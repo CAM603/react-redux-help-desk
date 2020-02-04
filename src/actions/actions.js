@@ -17,9 +17,13 @@ export const REGISTER_HELPER_START = "REGISTER_HELPER_START";
 export const REGISTER_HELPER_SUCCESS = "REGISTER_HELPER_SUCCESS";
 export const REGISTER_HELPER_FAILURE = "REGISTER_HELPER_FAILURE";
 
-export const GET_ALL_TICKETS_START = "GET_ALL_TICKETS_START"
-export const GET_ALL_TICKETS_SUCCESS = "GET_ALL_TICKETS_SUCCESS"
-export const GET_ALL_TICKETS_FAILURE = "GET_ALL_TICKETS_FAILURE"
+export const GET_ALL_TICKETS_START = "GET_ALL_TICKETS_START";
+export const GET_ALL_TICKETS_SUCCESS = "GET_ALL_TICKETS_SUCCESS";
+export const GET_ALL_TICKETS_FAILURE = "GET_ALL_TICKETS_FAILURE";
+
+export const ADD_TICKET_START = "ADD_TICKET_START";
+export const ADD_TICKET_SUCCESS = "ADD_TICKET_SUCCESS";
+export const ADD_TICKET_FAILURE = "ADD_TICKET_FAILURE";
 
 
 // STUDENTS
@@ -50,6 +54,20 @@ export const registerStudent = newStudent => dispatch => {
             console.log(err)
             dispatch({ type: REGISTER_STUDENT_FAILURE, payload: err.response.statusText })
         })
+}
+
+export const addTicket = (ticket) => dispatch => {
+    dispatch({ type: ADD_TICKET_START })
+    axiosWithAuth()
+    .post('/requests', ticket)
+    .then(res => {
+        console.log(res)
+        dispatch({ type: ADD_TICKET_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({ type: ADD_TICKET_FAILURE })
+    })
 }
 
 // HELPERS

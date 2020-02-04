@@ -13,7 +13,10 @@ import {
     REGISTER_HELPER_FAILURE,
     GET_ALL_TICKETS_START,
     GET_ALL_TICKETS_SUCCESS,
-    GET_ALL_TICKETS_FAILURE
+    GET_ALL_TICKETS_FAILURE,
+    ADD_TICKET_START,
+    ADD_TICKET_SUCCESS,
+    ADD_TICKET_FAILURE
 } from '../actions/actions';
 
 const initialState = {
@@ -24,6 +27,7 @@ const initialState = {
     ticketsLoading: false,
     loginLoading: false,
     registerLoading: false,
+    isAdding: false,
     error: ''
 }
 
@@ -128,6 +132,22 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 ticketsLoading: false,
                 error: action.payload
+            }
+        case ADD_TICKET_START:
+            return {
+                ...state,
+                isAdding: true
+            }
+        case ADD_TICKET_SUCCESS:
+            return {
+                ...state,
+                isAdding: false,
+                tickets: [...state.tickets, action.payload]
+            }
+        case ADD_TICKET_FAILURE:
+            return {
+                ...state,
+                isAdding: false
             }
         default:
             return state
