@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { loginStudent } from '../actions/actions';
 
-const Login = () => {
+const Login = (props) => {
     const [credentials, setCredentials] = useState({
         username: '',
         password: ''
@@ -13,23 +15,27 @@ const Login = () => {
         })
     }
 
-    const login = () => {
-        
+    const login = (event) => {
+        event.preventDefault()
+        // if statement to determine if student or helper
+        props.loginStudent(credentials)
         setCredentials({username: '', password: ''})
     }
 
     return (
         <div>
-            <form>
+            <form onSubmit={login}>
                 <input
                 type="text"
                 name="username"
                 placeholder="username"
+                value={credentials.username}
                 onChange={handleChange}
                 />
                 <input
                 type="password"
-                name="name"
+                name="password"
+                value={credentials.password}
                 onChange={handleChange}
                 />
                 <button>Log in</button>
@@ -38,4 +44,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default connect(null, {loginStudent})(Login);

@@ -7,8 +7,8 @@ const Form = (props) => {
     return (
         <div>
             {type === 'login' 
-            ? <p onClick={() => setType('signup')}>Sign Up</p> 
-            : <p onClick={() => setType('login')}>Log In</p>}
+            ? <p onClick={() => setType('signup')}>Not signed up? Sign Up</p> 
+            : <p onClick={() => setType('login')}>Already signed up? Log In</p>}
 
             {type === 'login' 
             ? <Login role={props.role}/> 
