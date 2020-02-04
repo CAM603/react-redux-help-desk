@@ -13,6 +13,9 @@ const Home = (props) => {
     const setHelper = () => {
         setRole('helper')
     }
+    const logout = () => {
+        localStorage.removeItem('token')
+    }
 
     let display;
 
@@ -40,6 +43,7 @@ const Home = (props) => {
                 <Link to="/dashboard">
                     <h3>Dashboard</h3>
                 </Link>
+                <p onClick={logout}>Log Out</p>
                 <p>Are you a <span onClick={setStudent}>student</span> or a <span onClick={setHelper}>helper</span>?</p>
             </div>
             {display}

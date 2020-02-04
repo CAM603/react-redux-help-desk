@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const StudentView = () => {
+import { getAllTickets } from '../actions/actions'
+
+const StudentView = (props) => {
+    
+    useEffect(() => {
+        props.getAllTickets()
+    }, [])
+
     return (
         <div>
             <h1>You are a student</h1>
         </div>
     )
 }
-
-export default StudentView;
+const mapStateToProps = (state) => {
+    return {
+        tickets: state.tickets
+    }
+}
+export default connect(mapStateToProps, {getAllTickets})(StudentView);
