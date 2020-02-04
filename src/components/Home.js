@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Form from './Form';
+
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const Home = (props) => {
@@ -18,14 +20,14 @@ const Home = (props) => {
         display = (
             <div>
                 <p>Hello Student</p>
-                <Form role="student"/>
+                <Form {...props} role="student"/>
             </div>
         )
     } else if (role === 'helper') {
         display = (
             <div>
                 <p>Hello Helper</p>
-                <Form role="helper"/>
+                <Form {...props} role="helper"/>
             </div>
         )
     } else {
@@ -35,6 +37,9 @@ const Home = (props) => {
     return (
         <div>
             <div>
+                <Link to="/dashboard">
+                    <h3>Dashboard</h3>
+                </Link>
                 <p>Are you a <span onClick={setStudent}>student</span> or a <span onClick={setHelper}>helper</span>?</p>
             </div>
             {display}

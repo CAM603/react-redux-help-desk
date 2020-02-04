@@ -20,8 +20,11 @@ const Login = (props) => {
         // if statement to determine if student or helper
         props.loginStudent(credentials)
         setCredentials({username: '', password: ''})
+        setTimeout(() => {
+            props.history.push("/dashboard")
+        }, 1000)
     }
-
+    console.log("props from login", props)
     return (
         <div>
             <form onSubmit={login}>

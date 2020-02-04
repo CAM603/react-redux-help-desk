@@ -1,0 +1,11 @@
+import React from 'react';
+
+const StudentView = () => {
+    return (
+        <div>
+            <h1>You are a student</h1>
+        </div>
+    )
+}
+
+export default StudentView;
