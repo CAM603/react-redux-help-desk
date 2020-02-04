@@ -19,7 +19,10 @@ import {
     ADD_TICKET_FAILURE,
     DELETE_TICKET_START,
     DELETE_TICKET_SUCCESS,
-    DELETE_TICKET_FAILURE
+    DELETE_TICKET_FAILURE,
+    EDIT_TICKET_START,
+    EDIT_TICKET_SUCCESS,
+    EDIT_TICKET_FAILURE
 } from '../actions/actions';
 
 const initialState = {
@@ -32,6 +35,7 @@ const initialState = {
     registerLoading: false,
     isAdding: false,
     isDeleting: false,
+    isEditing: false,
     error: ''
 }
 
@@ -169,6 +173,23 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isDeleting: false
+            }
+        case EDIT_TICKET_START:
+            return {
+                ...state,
+                isEditing: true
+            }
+        case EDIT_TICKET_SUCCESS:
+            let updatedTickets = state.tickets.map(ticket => ticket === action.payload ? action.payload : ticket)
+            return {
+                ...state,
+                isEditing: false,
+                tickets: updatedTickets
+            }
+        case EDIT_TICKET_FAILURE:
+            return {
+                ...state,
+                isEditing: false
             }
         default:
             return state

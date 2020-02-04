@@ -29,6 +29,10 @@ export const DELETE_TICKET_START = "DELETE_TICKET_START";
 export const DELETE_TICKET_SUCCESS = "DELETE_TICKET_SUCCESS";
 export const DELETE_TICKET_FAILURE = "DELETE_TICKET_FAILURE";
 
+export const EDIT_TICKET_START = "EDIT_TICKET_START";
+export const EDIT_TICKET_SUCCESS = "EDIT_TICKET_SUCCESS";
+export const EDIT_TICKET_FAILURE = "EDIT_TICKET_FAILURE";
+
 // STUDENTS
 export const loginStudent = credentials => dispatch => {
     dispatch({type: LOGIN_STUDENT_START });
@@ -84,6 +88,19 @@ export const deleteTicket = id => dispatch => {
     .catch(err => {
         console.log(err)
         dispatch({ type: DELETE_TICKET_FAILURE })
+    })
+}
+
+export const editTicket = (ticket) => dispatch => {
+    dispatch({ type: EDIT_TICKET_START });
+    axiosWithAuth()
+    .put(`/requests/${ticket.id}`, ticket)
+    .then(res => {
+        dispatch({ type: EDIT_TICKET_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({ type: EDIT_TICKET_FAILURE })
     })
 }
 
