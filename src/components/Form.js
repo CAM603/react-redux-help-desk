@@ -12,7 +12,7 @@ const Form = (props) => {
 
             {type === 'login' 
             ? <Login role={props.role}/> 
-            : <Signup role={props.role}/>}
+            : <Signup role={props.role}  setType={setType}/>}
         </div>
     )
 }

@@ -8,10 +8,10 @@ import {
 } from '../actions/actions';
 
 const initialState = {
+    userID: '',
     loginLoading: false,
-    loginError: '',
     registerLoading: false,
-    registerError: ''
+    error: ''
 }
 
 export const rootReducer = (state = initialState, action) => {
@@ -24,13 +24,14 @@ export const rootReducer = (state = initialState, action) => {
         case LOGIN_STUDENT_SUCCESS:
             return {
                 ...state,
-                loginLoading: false
+                loginLoading: false,
+                userID: action.payload
             }
         case LOGIN_STUDENT_FAILURE:
             return {
                 ...state,
                 loginLoading: false,
-                loginError: action.payload
+                error: action.payload
             }
         case REGISTER_STUDENT_START:
             return {
@@ -40,13 +41,14 @@ export const rootReducer = (state = initialState, action) => {
         case REGISTER_STUDENT_SUCCESS:
             return {
                 ...state,
-                registerLoading: false
+                registerLoading: false,
+                userID: action.payload
             }
         case REGISTER_STUDENT_FAILURE:
             return {
                 ...state,
                 registerLoading: false,
-                registerError: action.payload
+                error: action.payload
             }
         default:
             return state

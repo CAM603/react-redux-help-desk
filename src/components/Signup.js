@@ -18,6 +18,7 @@ const Signup = (props) => {
         event.preventDefault()
         props.registerStudent(newUser)
         setNewUser({username: '', password: ''})
+        props.setType('login')
     }
     return (
         <div>

@@ -16,7 +16,7 @@ export const loginStudent = credentials => dispatch => {
         .then(res => {
             console.log(res)
             localStorage.setItem('token', res.data.token)
-            dispatch({ type: LOGIN_STUDENT_SUCCESS})
+            dispatch({ type: LOGIN_STUDENT_SUCCESS, payload: res.data.studentid })
         })
         .catch(err => {
             console.log(err)
@@ -30,7 +30,7 @@ export const registerStudent = newStudent => dispatch => {
         .post('https://devdeskdb.herokuapp.com/api/auth/students/register', newStudent)
         .then(res => {
             console.log(res)
-            dispatch({ type: REGISTER_STUDENT_SUCCESS })
+            dispatch({ type: REGISTER_STUDENT_SUCCESS, payload: res.data.id })
         })
         .catch(err => {
             console.log(err)

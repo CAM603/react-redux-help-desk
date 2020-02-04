@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Login from './Login';
-import Signup from './Signup';
 import Form from './Form';
+import { connect } from 'react-redux';
 
 const Home = (props) => {
     const [role, setRole] = useState()
@@ -31,8 +30,8 @@ const Home = (props) => {
         )
     } else {
         display = <p>Choose your role</p>
-    }
-
+    }   
+    console.log(props.id)
     return (
         <div>
             <div>
@@ -42,5 +41,9 @@ const Home = (props) => {
         </div>
     )
 }
-
-export default Home;
+const mapStateToProps = state => {
+    return {
+        id: state.userID
+    }
+}
+export default connect(mapStateToProps, {})(Home);
