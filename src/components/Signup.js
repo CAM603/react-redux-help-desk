@@ -1,25 +1,35 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 
-import { registerStudent } from '../actions/actions';
+import { registerStudent, registerHelper } from '../actions/actions';
 
 const Signup = (props) => {
     const [newUser, setNewUser] = useState({
         username: '',
         password: ''
     })
+
     const handleChange = (event) => {
         setNewUser({
             ...newUser,
             [event.target.name]: event.target.value
         })
     }
+
     const signup = (event) => {
         event.preventDefault()
-        props.registerStudent(newUser)
+
+        if(props.role === 'student') {
+            props.registerStudent(newUser)
+        }
+        if(props.role === 'helper') {
+            props.registerHelper(newUser)
+        }
+        
         setNewUser({username: '', password: ''})
         props.setType('login')
     }
+
     return (
         <div>
             <form onSubmit={signup}>
@@ -48,4 +58,4 @@ const Signup = (props) => {
     )
 }
 
-export default connect(null, {registerStudent})(Signup);
+export default connect(null, {registerStudent, registerHelper})(Signup);

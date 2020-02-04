@@ -36,7 +36,7 @@ const Home = (props) => {
     } else {
         display = <p>Choose your role</p>
     }   
-    console.log(props.id)
+    
     return (
         <div>
             <div>

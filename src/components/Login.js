@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { loginStudent } from '../actions/actions';
+import { loginStudent, loginHelper } from '../actions/actions';
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({
@@ -18,13 +18,18 @@ const Login = (props) => {
     const login = (event) => {
         event.preventDefault()
         // if statement to determine if student or helper
-        props.loginStudent(credentials)
+        if(props.role === 'student') {
+            props.loginStudent(credentials)
+        }
+        if(props.role === 'helper') {
+            props.loginHelper(credentials)
+        }
         setCredentials({username: '', password: ''})
         setTimeout(() => {
             props.history.push("/dashboard")
         }, 1000)
     }
-    console.log("props from login", props)
+    
     return (
         <div>
             <form onSubmit={login}>
@@ -47,4 +52,4 @@ const Login = (props) => {
     )
 }
 
-export default connect(null, {loginStudent})(Login);
+export default connect(null, {loginStudent, loginHelper})(Login);

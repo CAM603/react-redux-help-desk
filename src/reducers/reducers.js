@@ -5,6 +5,12 @@ import {
     REGISTER_STUDENT_START,
     REGISTER_STUDENT_SUCCESS,
     REGISTER_STUDENT_FAILURE,
+    LOGIN_HELPER_START,
+    LOGIN_HELPER_SUCCESS,
+    LOGIN_HELPER_FAILURE,
+    REGISTER_HELPER_START,
+    REGISTER_HELPER_SUCCESS,
+    REGISTER_HELPER_FAILURE,
     GET_ALL_TICKETS_START,
     GET_ALL_TICKETS_SUCCESS,
     GET_ALL_TICKETS_FAILURE
@@ -26,7 +32,8 @@ export const rootReducer = (state = initialState, action) => {
         case LOGIN_STUDENT_START:
             return {
                 ...state,
-                loginLoading: true
+                loginLoading: true,
+                helper: false
             }
         case LOGIN_STUDENT_SUCCESS:
             return {
@@ -57,6 +64,47 @@ export const rootReducer = (state = initialState, action) => {
                 
             }
         case REGISTER_STUDENT_FAILURE:
+            return {
+                ...state,
+                registerLoading: false,
+                error: action.payload,
+                
+            }
+        case LOGIN_HELPER_START:
+            return {
+                ...state,
+                loginLoading: true,
+                student: false
+            }
+        case LOGIN_HELPER_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                loginLoading: false,
+                userID: action.payload,
+                helper: true
+            }
+        case LOGIN_HELPER_FAILURE:
+            return {
+                ...state,
+                loginLoading: false,
+                error: action.payload,
+                helper: false
+            }
+        case REGISTER_HELPER_START:
+            return {
+                ...state,
+                registerLoading: true
+            }
+        case REGISTER_HELPER_SUCCESS:
+            return {
+                ...state,
+                registerLoading: false,
+                error: '',
+                userID: action.payload,
+                
+            }
+        case REGISTER_HELPER_FAILURE:
             return {
                 ...state,
                 registerLoading: false,
