@@ -8,7 +8,7 @@ const Dashboard = (props) => {
     return (
         <div>
             {student ? <StudentView {...props}/> : null}
-            {helper ? <HelperView/> : null}
+            {helper ? <HelperView {...props}/> : null}
         </div>
     )
 }
