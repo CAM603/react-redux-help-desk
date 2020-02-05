@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import Ticket from './Ticket';
-import { getAllTickets, editTicket } from '../actions/actions';
+import Ticket from '../Ticket';
+import { getAllTickets, editTicket } from '../../actions/actions';
 
 const AllStudentTickets = (props) => {
     useEffect(() => {

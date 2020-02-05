@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { deleteTicket } from '../actions/actions'
+import { deleteTicket } from '../../actions/actions'
 
 import { Toast, ToastBody, ToastHeader, Button } from 'reactstrap'
 

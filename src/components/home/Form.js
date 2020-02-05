@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Login from './Login';
-import Signup from './Signup';
+import Login from '../forms/Login';
+import Signup from '../forms/Signup';
 
 const Form = (props) => {
     const [type, setType] = useState('login')

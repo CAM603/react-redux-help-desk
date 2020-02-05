@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addTicket } from '../actions/actions';
+import { addTicket } from '../../actions/actions';
 
 import { Form, FormGroup, Input, Button, Label } from 'reactstrap';
 

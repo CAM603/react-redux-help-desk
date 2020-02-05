@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Form from './Form';
 
-import { connect } from 'react-redux';
-
 import { Container, Row, Col, Button, Jumbotron } from 'reactstrap';
 
 const Home = (props) => {
@@ -69,9 +67,5 @@ const Home = (props) => {
         </Container>
     )
 }
-const mapStateToProps = state => {
-    return {
-        id: state.userID
-    }
-}
-export default connect(mapStateToProps, {})(Home);
+
+export default Home;

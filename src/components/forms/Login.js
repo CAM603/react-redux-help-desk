@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { loginStudent, loginHelper } from '../actions/actions';
+import { loginStudent, loginHelper } from '../../actions/actions';
 
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 
@@ -31,7 +31,7 @@ const Login = (props) => {
                 props.history.push("/dashboard")
                 setCredentials({username: '', password: ''})
             }
-        }, 1000)
+        }, 500)
     }
     
     return (

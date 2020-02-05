@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { getAllTickets, editTicket } from '../actions/actions'
-import AddTicket from './AddTicket';
+import { getAllTickets, editTicket } from '../../actions/actions'
+import AddTicket from '../forms/AddTicket';
 import StudentNav from './StudentNav';
 import AllStudentTickets from './AllStudentTickets';
 import StudentTickets from './StudentTickets';

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getStudentTickets, editTicket } from '../actions/actions'
+import { getStudentTickets, editTicket } from '../../actions/actions'
 import StudentTicket from './StudentTicket';
-import EditTicket from './EditTicket';
+import EditTicket from '../forms/EditTicket';
 
 const StudentTickets = (props) => {
     const [editing, setEditing] = useState(false)

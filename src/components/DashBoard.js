@@ -1,8 +1,6 @@
 import React from 'react'
-import StudentView from './StudentView'
-import HelperView from './HelperView'
-
-import { connect } from 'react-redux';
+import StudentView from './student/StudentView'
+import HelperView from './helper/HelperView'
 
 const Dashboard = (props) => {
     let student = localStorage.getItem('student');
@@ -15,11 +13,4 @@ const Dashboard = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        state: state,
-        student: state.student,
-        helper: state.helper
-    }
-}
-export default connect(mapStateToProps, {})(Dashboard);
+export default Dashboard;

@@ -117,7 +117,8 @@ export const loginHelper = credentials => dispatch => {
         .then(res => {
             console.log(res)
             localStorage.setItem('token', res.data.token)
-            dispatch({ type: LOGIN_HELPER_SUCCESS, payload: res.data.helperid })
+            localStorage.setItem('helper', res.data.username)
+            dispatch({ type: LOGIN_HELPER_SUCCESS, payload: res })
         })
         .catch(err => {
             console.log(err)
@@ -131,7 +132,7 @@ export const registerHelper = newHelper => dispatch => {
         .post('https://devdeskdb.herokuapp.com/api/auth/helpers/register', newHelper)
         .then(res => {
             console.log(res)
-            dispatch({ type: REGISTER_HELPER_SUCCESS, payload: res.data.id })
+            dispatch({ type: REGISTER_HELPER_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err)

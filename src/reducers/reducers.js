@@ -78,7 +78,7 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 registerLoading: false,
                 error: '',
-                userID: action.payload,
+                userID: action.payload.id,
                 
             }
         case REGISTER_STUDENT_FAILURE:
@@ -99,7 +99,8 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: '',
                 loginLoading: false,
-                userID: action.payload,
+                userID: action.payload.helperId,
+                user: action.payload,
                 helper: true
             }
         case LOGIN_HELPER_FAILURE:
@@ -119,7 +120,7 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 registerLoading: false,
                 error: '',
-                userID: action.payload,
+                userID: action.payload.id,
                 
             }
         case REGISTER_HELPER_FAILURE:
