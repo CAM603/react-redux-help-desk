@@ -9,7 +9,7 @@ const Dashboard = (props) => {
     let helper = localStorage.getItem('helper')
     return (
         <div>
-            {student ? <StudentView/> : null}
+            {student ? <StudentView {...props}/> : null}
             {helper ? <HelperView/> : null}
         </div>
     )

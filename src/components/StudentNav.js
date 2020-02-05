@@ -9,6 +9,12 @@ const StudentNav = (props) => {
     if(activeTab !== tab) setActiveTab(tab);
     }
 
+    const logout = () => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('student')
+        props.history.push('/')
+    }
+
     return (
         <div>
             <Nav tabs>
@@ -51,6 +57,9 @@ const StudentNav = (props) => {
                         }}>
                         Add Ticket
                     </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink onClick={logout}>Log Out</NavLink>
                 </NavItem>
             </Nav>
         </div>

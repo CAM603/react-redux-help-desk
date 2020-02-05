@@ -26,9 +26,11 @@ const Login = (props) => {
         if(props.role === 'helper' && !localStorage.getItem('token')) {
             props.loginHelper(credentials)
         }
-        setCredentials({username: '', password: ''})
         setTimeout(() => {
-            props.history.push("/dashboard")
+            if(localStorage.getItem('token')) {
+                props.history.push("/dashboard")
+                setCredentials({username: '', password: ''})
+            }
         }, 1000)
     }
     
@@ -52,11 +54,16 @@ const Login = (props) => {
                         value={credentials.password}
                         onChange={handleChange}
                         />
+                        {<p>{props.error}</p>}
                 </FormGroup>
                 <Button>Log in</Button>
             </Form>
         </div>
     )
 }
-
-export default connect(null, {loginStudent, loginHelper})(Login);
+const mapStateToProps = (state) => {
+    return {
+        error: state.error
+    }
+}
+export default connect(mapStateToProps, {loginStudent, loginHelper})(Login);

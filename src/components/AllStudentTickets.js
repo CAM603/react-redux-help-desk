@@ -10,12 +10,11 @@ const AllStudentTickets = (props) => {
     }, [])
 
     return (
-        <div>
+        <div className="ticket-container">
             {props.tickets.length < 1 ? <h1>Create a ticket</h1>
             :
             props.tickets.map(ticket => (
                 <Ticket
-                editable={false}
                 ticket={ticket}
                 />
             ))

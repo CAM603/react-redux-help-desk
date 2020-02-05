@@ -5,3 +5,23 @@ span {
   color: blue;
   text-decoration: underline;
 }
+
+.toast {
+  min-width: 350px;
+}
+
+.toast-body {
+  text-align: left;
+}
+
+.modal-footer {
+  justify-content: left;
+}
+
+.ticket-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding-top: 20px;
+}

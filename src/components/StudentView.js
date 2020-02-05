@@ -23,11 +23,11 @@ const StudentView = (props) => {
         display = <StudentTickets/>
     }
     if(tab === 'add') {
-        display = <AddTicket/>
+        display = <AddTicket setTab={setTab}/>
     }
     return (
         <div>
-            <StudentNav setTab={setTab}/>
+            <StudentNav {...props} setTab={setTab}/>
             {display}
         </div>
     )

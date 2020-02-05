@@ -14,9 +14,6 @@ const Home = (props) => {
     const setHelper = () => {
         setRole('helper')
     }
-    const logout = () => {
-        localStorage.removeItem('token')
-    }
 
     let display;
     let greeting;

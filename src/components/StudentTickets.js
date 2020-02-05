@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { getStudentTickets, editTicket } from '../actions/actions'
-import Ticket from './Ticket';
+import StudentTicket from './StudentTicket';
 import EditTicket from './EditTicket';
 
 const StudentTickets = (props) => {
@@ -10,7 +10,7 @@ const StudentTickets = (props) => {
         id: '',
         request_title: '',
         request_stepstaken: '',
-        request_category: '',
+        request_category: 1,
         request_date: '', 
         request_details: '',
         creatorId: '', 
@@ -40,18 +40,17 @@ const StudentTickets = (props) => {
 
     const updateTicket = (updatedTicket) => {
         setEditing(false)
-        console.log('updated', updatedTicket)
+        
         props.editTicket(updatedTicket)
         props.getStudentTickets(props.id)
     }
-
+    
     return (
-        <div>
+        <div className="ticket-container">
             {!props.studentTickets ? <h1>You have no tickets</h1>
             :
             props.studentTickets.map(ticket => (
-                <Ticket
-                editable={true}
+                <StudentTicket
                 editHandler={editHandler}
                 ticket={ticket}/>
             ))
