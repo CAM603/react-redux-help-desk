@@ -10,7 +10,7 @@ const Ticket = (props) => {
     const deleteTicket = (ticketID) => {
         props.deleteTicket(ticketID)
     }
-    
+    console.log(props.editable)
     return (
         <Toast>
             <ToastHeader>
@@ -19,15 +19,21 @@ const Ticket = (props) => {
             <ToastBody>
                 {props.ticket.request_title}
             </ToastBody>
-        <Button 
-        size="sm" 
-        color="info" 
-        onClick={() => props.editHandler(props.ticket)}>edit</Button>
-            {' '}
-        <Button 
-        size="sm" 
-        color="danger" 
-        onClick={() => deleteTicket(props.ticket.id)}>Delete</Button>
+            {props.editable ?
+            <>
+            <Button 
+            size="sm" 
+            color="info" 
+            onClick={() => props.editHandler(props.ticket)}>edit</Button>
+                {' '}
+            <Button 
+            size="sm" 
+            color="danger" 
+            onClick={() => deleteTicket(props.ticket.id)}>Delete</Button>
+            </>
+            :
+            null
+            }
         </Toast>
     )
 }

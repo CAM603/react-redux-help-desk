@@ -188,10 +188,12 @@ export const rootReducer = (state = initialState, action) => {
             }
         case DELETE_TICKET_SUCCESS:
             let filteredTickets = state.tickets.filter(ticket => ticket.id !== action.payload)
+            let filteredTickets2 = state.studentTickets.filter(ticket => ticket.id !== action.payload)
             return {
                 ...state,
                 isDeleting: false,
-                tickets: filteredTickets
+                tickets: filteredTickets,
+                studentTickets: filteredTickets2
             }
         case DELETE_TICKET_FAILURE:
             return {
