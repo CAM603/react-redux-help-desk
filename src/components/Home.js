@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Form from './Form';
 
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import { Container, Row, Col, Button, Jumbotron } from 'reactstrap';
 
 const Home = (props) => {
     const [role, setRole] = useState()
@@ -18,36 +19,57 @@ const Home = (props) => {
     }
 
     let display;
+    let greeting;
 
     if (role === 'student') {
         display = (
             <div>
-                <p>Hello Student</p>
                 <Form {...props} role="student"/>
             </div>
+        )
+        greeting = (
+            <h2>Welcome Student!</h2>
         )
     } else if (role === 'helper') {
         display = (
             <div>
-                <p>Hello Helper</p>
                 <Form {...props} role="helper"/>
             </div>
         )
+        greeting = (
+            <h2>Welcome Helper!</h2>
+        )
     } else {
-        display = <p>Choose your role</p>
+        display = null;
+        
     }   
     
     return (
-        <div>
-            <div>
-                <Link to="/dashboard">
-                    <h3>Dashboard</h3>
-                </Link>
-                <p onClick={logout}>Log Out</p>
-                <p>Are you a <span onClick={setStudent}>student</span> or a <span onClick={setHelper}>helper</span>?</p>
-            </div>
-            {display}
-        </div>
+        <Container>
+            <Jumbotron>
+                <h1>Hello, welcome to the best help app!</h1>
+                <hr/>
+                <h2>Are you the student or helper?</h2>
+            <Row>
+                <Col>
+                    <Button color="primary" size="lg" onClick={setStudent}>student</Button>
+                </Col>
+                <Col>
+                    <Button color="success" size="lg" onClick={setHelper}>helper</Button>
+                </Col>
+            </Row>
+            </Jumbotron>
+            <Row>
+                <Col>
+                    {greeting}
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    {display}
+                </Col>
+            </Row>
+        </Container>
     )
 }
 const mapStateToProps = state => {

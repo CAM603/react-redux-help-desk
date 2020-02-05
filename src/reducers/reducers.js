@@ -26,6 +26,7 @@ import {
 } from '../actions/actions';
 
 const initialState = {
+    user: '',
     userID: 0,
     student: false,
     helper: false,
@@ -52,7 +53,8 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: '',
                 loginLoading: false,
-                userID: action.payload,
+                userID: action.payload.id,
+                user: action.payload,
                 student: true
             }
         case LOGIN_STUDENT_FAILURE:

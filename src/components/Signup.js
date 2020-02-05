@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+
 import { registerStudent, registerHelper } from '../actions/actions';
 
 const Signup = (props) => {
@@ -32,28 +34,36 @@ const Signup = (props) => {
 
     return (
         <div>
-            <form onSubmit={signup}>
-                <input 
-                type="text"
-                name="email"
-                placeholder="email"
-                />
-                <input 
-                type="text"
-                name="username"
-                placeholder="username"
-                value={newUser.username}
-                onChange={handleChange}
-                />
-                <input 
-                type="text"
-                name="password"
-                placeholder="password"
-                value={newUser.password}
-                onChange={handleChange}
-                />
-                <button>Register</button>
-            </form>
+            <Form onSubmit={signup}>
+                <FormGroup>
+
+                    <Input 
+                    type="text"
+                    name="email"
+                    placeholder="email"
+                    />
+                </FormGroup>
+                <FormGroup>
+
+                    <Input 
+                    type="text"
+                    name="username"
+                    placeholder="username"
+                    value={newUser.username}
+                    onChange={handleChange}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Input 
+                    type="text"
+                    name="password"
+                    placeholder="password"
+                    value={newUser.password}
+                    onChange={handleChange}
+                    />
+                </FormGroup>
+                <Button>Register</Button>
+            </Form>
         </div>
     )
 }

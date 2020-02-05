@@ -39,7 +39,7 @@ export const loginStudent = credentials => dispatch => {
     axios
         .post('https://devdeskdb.herokuapp.com/api/auth/students/login', credentials)
         .then(res => {
-            console.log(res)
+            console.log('Login success', res)
             localStorage.setItem('token', res.data.token)
             dispatch({ type: LOGIN_STUDENT_SUCCESS, payload: res.data.studentid })
         })
@@ -55,7 +55,7 @@ export const registerStudent = newStudent => dispatch => {
         .post('https://devdeskdb.herokuapp.com/api/auth/students/register', newStudent)
         .then(res => {
             console.log(res)
-            dispatch({ type: REGISTER_STUDENT_SUCCESS, payload: res.data.id })
+            dispatch({ type: REGISTER_STUDENT_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err)

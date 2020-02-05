@@ -8,16 +8,15 @@ const Dashboard = (props) => {
     
     return (
         <div>
-            <h1>You have made it to the dashboard!!!!</h1>
             {props.student ? <StudentView/> : null}
             {props.helper ? <HelperView/> : null}
         </div>
     )
 }
 
-
 const mapStateToProps = (state) => {
     return {
+        state: state,
         student: state.student,
         helper: state.helper
     }

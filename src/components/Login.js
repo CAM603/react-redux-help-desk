@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { loginStudent, loginHelper } from '../actions/actions';
 
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+
 const Login = (props) => {
     const [credentials, setCredentials] = useState({
         username: '',
@@ -32,22 +34,28 @@ const Login = (props) => {
     
     return (
         <div>
-            <form onSubmit={login}>
-                <input
-                type="text"
-                name="username"
-                placeholder="username"
-                value={credentials.username}
-                onChange={handleChange}
-                />
-                <input
-                type="password"
-                name="password"
-                value={credentials.password}
-                onChange={handleChange}
-                />
-                <button>Log in</button>
-            </form>
+            <Form onSubmit={login}>
+                <FormGroup>
+                    <Label sm={2} size="lg">Username</Label>
+                        <Input
+                        type="text"
+                        name="username"
+                        placeholder="username"
+                        value={credentials.username}
+                        onChange={handleChange}
+                        />
+                </FormGroup>
+                <FormGroup>
+                    <Label sm={2} size="lg">Password</Label>
+                        <Input
+                        type="password"
+                        name="password"
+                        value={credentials.password}
+                        onChange={handleChange}
+                        />
+                </FormGroup>
+                <Button>Log in</Button>
+            </Form>
         </div>
     )
 }

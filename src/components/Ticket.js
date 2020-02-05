@@ -8,7 +8,7 @@ const Ticket = (props) => {
     const deleteTicket = (ticketID) => {
         props.deleteTicket(ticketID)
     }
-
+    
     return (
         <div>
             <p>{props.category}</p>
