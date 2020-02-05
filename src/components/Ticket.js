@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { deleteTicket } from '../actions/actions'
 
+import { Toast, ToastBody, ToastHeader, Button } from 'reactstrap'
+
 const Ticket = (props) => {
     
     const deleteTicket = (ticketID) => {
@@ -10,15 +12,23 @@ const Ticket = (props) => {
     }
     
     return (
-        <div>
-            <p>{props.category}</p>
-            <p>{props.date}</p>
-            <p>{props.title}</p>
-            <p>{props.details}</p>
-            <p>{props.stepstaken}</p>
-            <button onClick={() => deleteTicket(props.id)}>Delete</button>
-            <button onClick={() => props.editHandler(props.ticket)}>edit</button>
-        </div>
+        <Toast>
+            <ToastHeader>
+                topic here
+            </ToastHeader>
+            <ToastBody>
+                {props.ticket.request_title}
+            </ToastBody>
+        <Button 
+        size="sm" 
+        color="info" 
+        onClick={() => props.editHandler(props.ticket)}>edit</Button>
+            {' '}
+        <Button 
+        size="sm" 
+        color="danger" 
+        onClick={() => deleteTicket(props.ticket.id)}>Delete</Button>
+        </Toast>
     )
 }
 const mapStateToProps = (state) => {

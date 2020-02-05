@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addTicket } from '../actions/actions';
 
+import { Form, FormGroup, Input, Button } from 'reactstrap';
+
 const AddTicket = (props) => {
     const [ticket, setTicket] = useState({
         request_category: '', 
@@ -34,37 +36,45 @@ const AddTicket = (props) => {
     
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                type="text"
-                name="request_category"
-                value={ticket.request_category}
-                onChange={handleChange}
-                placeholder="category"
-                />
-                <input
-                type="text"
-                name="request_title"
-                value={ticket.request_title}
-                onChange={handleChange}
-                placeholder="title"
-                />
-                <input
-                type="text"
-                name="request_stepstaken"
-                value={ticket.request_stepstaken}
-                onChange={handleChange}
-                placeholder="steps taken"
-                />
-                <input
-                type="text"
-                name="request_details"
-                value={ticket.request_details}
-                onChange={handleChange}
-                placeholder="details"
-                />
-                <button>Add</button>
-            </form>
+            <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                    <Input
+                    type="text"
+                    name="request_category"
+                    value={ticket.request_category}
+                    onChange={handleChange}
+                    placeholder="category"
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Input
+                    type="text"
+                    name="request_title"
+                    value={ticket.request_title}
+                    onChange={handleChange}
+                    placeholder="title"
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Input
+                    type="text"
+                    name="request_stepstaken"
+                    value={ticket.request_stepstaken}
+                    onChange={handleChange}
+                    placeholder="steps taken"
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Input
+                    type="text"
+                    name="request_details"
+                    value={ticket.request_details}
+                    onChange={handleChange}
+                    placeholder="details"
+                    />
+                </FormGroup>
+                <Button>Add</Button>
+            </Form>
         </div>
     )
 }

@@ -3,86 +3,39 @@ import { connect } from 'react-redux';
 
 import { getAllTickets, editTicket } from '../actions/actions'
 import AddTicket from './AddTicket';
-import Ticket from './Ticket';
-import EditTicket from './EditTicket';
+import StudentNav from './StudentNav';
+import AllStudentTickets from './AllStudentTickets';
 
 const StudentView = (props) => {
-    const [editing, setEditing] = useState(false)
-    const initialTicket = useState({
-        id: '',
-        request_title: '',
-        request_stepstaken: '',
-        request_category: '',
-        request_date: '', 
-        request_details: '',
-        creatorId: '', 
-        helperId: '',
-        resolved: ''
-        }
-    )
-    const [currentTicket, setCurrentTicket] = useState(initialTicket)
+    const [tab, setTab] = useState('home')
+    let name = localStorage.getItem('student')
+    name = name.charAt(0).toUpperCase() + name.slice(1)
     
-    useEffect(() => {
-        props.getAllTickets()
-    }, [])
-
-    const editHandler = (ticket) => {
-        setEditing(true)
-        setCurrentTicket({
-            id: ticket.id,
-            request_title: ticket.request_title,
-            request_stepstaken: ticket.request_stepstaken,
-            request_category: ticket.request_category,
-            request_date: ticket.request_date, 
-            request_details: ticket.request_details,
-            creatorId: ticket.creatorId, 
-            helperId: ticket.helperId,
-            resolved: ticket.resolved
-        })
+    let display;
+    if(tab === 'home') {
+        display = <h1>Welcome back, {name}</h1>
     }
-    const updateTicket = (updatedTicket) => {
-        setEditing(false)
-        console.log('updated', updatedTicket)
-        props.editTicket(updatedTicket)
-        props.getAllTickets()
+    if(tab === 'all') {
+        display = <AllStudentTickets />
     }
-
+    if(tab === 'mine') {
+        display = <p>Coming soon</p>
+    }
+    if(tab === 'add') {
+        display = <AddTicket/>
+    }
     return (
         <div>
-            <h1>You are a student</h1>
-            {props.tickets.length < 1 ? <p>Create a ticket</p>
-            :
-            props.tickets.map(ticket => (
-                <Ticket
-                category={ticket.request_category}
-                date={ticket.request_date}
-                title={ticket.request_title}
-                details={ticket.request_details}
-                stepstaken={ticket.request_stepstaken}
-                id={ticket.id}
-                editHandler={editHandler}
-                ticket={ticket}
-                />
-            ))
-            }
-            {editing 
-            ? 
-            <EditTicket
-            editing={editing}
-            setEditing={setEditing}
-            currentTicket={currentTicket}
-            updateTicket={updateTicket}
-            />
-            :
-            <AddTicket/>
-            }
+            <StudentNav setTab={setTab}/>
+            {display}
         </div>
     )
 }
 const mapStateToProps = (state) => {
     return {
         tickets: state.tickets,
-        userID: state.userID
+        userID: state.userID,
+        student: state.user
     }
 }
 export default connect(mapStateToProps, {getAllTickets, editTicket})(StudentView);

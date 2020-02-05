@@ -5,11 +5,12 @@ import HelperView from './HelperView'
 import { connect } from 'react-redux';
 
 const Dashboard = (props) => {
-    
+    let student = localStorage.getItem('student');
+    let helper = localStorage.getItem('helper')
     return (
         <div>
-            {props.student ? <StudentView/> : null}
-            {props.helper ? <HelperView/> : null}
+            {student ? <StudentView/> : null}
+            {helper ? <HelperView/> : null}
         </div>
     )
 }

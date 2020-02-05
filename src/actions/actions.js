@@ -41,7 +41,8 @@ export const loginStudent = credentials => dispatch => {
         .then(res => {
             console.log('Login success', res)
             localStorage.setItem('token', res.data.token)
-            dispatch({ type: LOGIN_STUDENT_SUCCESS, payload: res.data.studentid })
+            localStorage.setItem('student', res.data.username)
+            dispatch({ type: LOGIN_STUDENT_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err)

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { loginStudent, loginHelper } from '../actions/actions';
 
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Input, Button } from 'reactstrap';
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({
@@ -20,10 +20,10 @@ const Login = (props) => {
     const login = (event) => {
         event.preventDefault()
         // if statement to determine if student or helper
-        if(props.role === 'student') {
+        if(props.role === 'student' && !localStorage.getItem('token')) {
             props.loginStudent(credentials)
         }
-        if(props.role === 'helper') {
+        if(props.role === 'helper' && !localStorage.getItem('token')) {
             props.loginHelper(credentials)
         }
         setCredentials({username: '', password: ''})
@@ -36,7 +36,6 @@ const Login = (props) => {
         <div>
             <Form onSubmit={login}>
                 <FormGroup>
-                    <Label sm={2} size="lg">Username</Label>
                         <Input
                         type="text"
                         name="username"
@@ -46,10 +45,10 @@ const Login = (props) => {
                         />
                 </FormGroup>
                 <FormGroup>
-                    <Label sm={2} size="lg">Password</Label>
                         <Input
                         type="password"
                         name="password"
+                        placeholder="password"
                         value={credentials.password}
                         onChange={handleChange}
                         />

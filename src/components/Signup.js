@@ -36,7 +36,6 @@ const Signup = (props) => {
         <div>
             <Form onSubmit={signup}>
                 <FormGroup>
-
                     <Input 
                     type="text"
                     name="email"
@@ -44,7 +43,6 @@ const Signup = (props) => {
                     />
                 </FormGroup>
                 <FormGroup>
-
                     <Input 
                     type="text"
                     name="username"
