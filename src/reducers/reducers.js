@@ -14,6 +14,9 @@ import {
     GET_ALL_TICKETS_START,
     GET_ALL_TICKETS_SUCCESS,
     GET_ALL_TICKETS_FAILURE,
+    GET_STUDENT_TICKETS_START,
+    GET_STUDENT_TICKETS_SUCCESS,
+    GET_STUDENT_TICKETS_FAILURE,
     ADD_TICKET_START,
     ADD_TICKET_SUCCESS,
     ADD_TICKET_FAILURE,
@@ -31,6 +34,7 @@ const initialState = {
     student: false,
     helper: false,
     tickets: [],
+    studentTickets: [],
     ticketsLoading: false,
     loginLoading: false,
     registerLoading: false,
@@ -53,7 +57,7 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: '',
                 loginLoading: false,
-                userID: action.payload.id,
+                userID: action.payload.studentid,
                 user: action.payload,
                 student: true
             }
@@ -138,6 +142,24 @@ export const rootReducer = (state = initialState, action) => {
                 tickets: action.payload
             }
         case GET_ALL_TICKETS_FAILURE:
+            return {
+                ...state,
+                ticketsLoading: false,
+                error: action.payload
+            }
+        case GET_STUDENT_TICKETS_START:
+            return {
+                ...state,
+                ticketsLoading: true,
+                error: ''
+            }
+        case GET_STUDENT_TICKETS_SUCCESS:
+            return {
+                ...state,
+                ticketsLoading: false,
+                studentTickets: action.payload
+            }
+        case GET_STUDENT_TICKETS_FAILURE:
             return {
                 ...state,
                 ticketsLoading: false,

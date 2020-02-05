@@ -21,6 +21,10 @@ export const GET_ALL_TICKETS_START = "GET_ALL_TICKETS_START";
 export const GET_ALL_TICKETS_SUCCESS = "GET_ALL_TICKETS_SUCCESS";
 export const GET_ALL_TICKETS_FAILURE = "GET_ALL_TICKETS_FAILURE";
 
+export const GET_STUDENT_TICKETS_START = "GET_STUDENT_TICKETS_START";
+export const GET_STUDENT_TICKETS_SUCCESS = "GET_STUDENT_TICKETS_SUCCESS";
+export const GET_STUDENT_TICKETS_FAILURE = "GET_STUDENT_TICKETS_FAILURE";
+
 export const ADD_TICKET_START = "ADD_TICKET_START";
 export const ADD_TICKET_SUCCESS = "ADD_TICKET_SUCCESS";
 export const ADD_TICKET_FAILURE = "ADD_TICKET_FAILURE";
@@ -145,6 +149,20 @@ export const getAllTickets = () => dispatch => {
         })
         .catch(err => {
             dispatch({ type: GET_ALL_TICKETS_FAILURE })
+            console.log(err)
+        })
+}
+
+export const getStudentTickets = (id) => dispatch => {
+    dispatch({ type: GET_STUDENT_TICKETS_START })
+    axiosWithAuth()
+        .get(`students/${id}/requests`)
+        .then(res => {
+            dispatch({ type: GET_STUDENT_TICKETS_SUCCESS, payload: res.data })
+            console.log(res)
+        })
+        .catch(err => {
+            dispatch({ type: GET_STUDENT_TICKETS_FAILURE })
             console.log(err)
         })
 }

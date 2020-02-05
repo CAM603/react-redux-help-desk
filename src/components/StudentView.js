@@ -5,6 +5,7 @@ import { getAllTickets, editTicket } from '../actions/actions'
 import AddTicket from './AddTicket';
 import StudentNav from './StudentNav';
 import AllStudentTickets from './AllStudentTickets';
+import StudentTickets from './StudentTickets';
 
 const StudentView = (props) => {
     const [tab, setTab] = useState('home')
@@ -19,7 +20,7 @@ const StudentView = (props) => {
         display = <AllStudentTickets />
     }
     if(tab === 'mine') {
-        display = <p>Coming soon</p>
+        display = <StudentTickets/>
     }
     if(tab === 'add') {
         display = <AddTicket/>
