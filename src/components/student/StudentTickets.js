@@ -48,7 +48,7 @@ const StudentTickets = (props) => {
     
     return (
         <div className="ticket-container">
-            {!props.studentTickets ? <h1>You have no tickets</h1>
+            {!props.studentTickets.length < 1 ? <h1>You have no tickets</h1>
             :
             props.studentTickets.map(ticket => (
                 <StudentTicket

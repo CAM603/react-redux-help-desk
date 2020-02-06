@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+import { connect } from 'react-redux'
+
+import { assignTicket }from '../actions/actions';
 
 import { Card, CardHeader, CardFooter, CardBody,
     CardTitle, CardText, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 
-const Ticket = ({ticket}) => {
+const Ticket = ({ticket, helper, assignTicket}) => {
     const [modal, setModal] = useState(false);
     
     const toggle = () => setModal(!modal);
@@ -47,7 +50,9 @@ const Ticket = ({ticket}) => {
         case 12:
             topic = "App Deployment";
     }
-    
+    const assign = (ticket) => {
+        assignTicket(ticket)
+    }
     return (
         <>
             <Card>
@@ -63,13 +68,20 @@ const Ticket = ({ticket}) => {
                     </CardText>
                 </CardBody>
                 <CardFooter>
-                    <Button size='sm' color="info" onClick={toggle}>Details</Button>
+                    <Button 
+                    size='sm' 
+                    color="info" 
+                    onClick={toggle}>Details</Button>
+                    {helper ? 
+                    <Button
+                    onClick={() => assign(ticket)}
+                    size="sm">Assign</Button>
+                    : null}
                 </CardFooter>
             </Card>
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader tag="h3" toggle={toggle}>{topic}</ModalHeader>
                 <ModalBody>
-
                     <h4>{ticket.request_title}:</h4>
                     <p>{ticket.request_details}</p>
                     <h4>Steps Taken:</h4>
@@ -82,5 +94,9 @@ const Ticket = ({ticket}) => {
         </>
     )
 }
-
-export default Ticket;
+const mapStateToProps = state => {
+    return {
+        helper: state.helper
+    }
+}
+export default connect(mapStateToProps, {assignTicket})(Ticket);

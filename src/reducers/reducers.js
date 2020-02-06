@@ -25,7 +25,8 @@ import {
     DELETE_TICKET_FAILURE,
     EDIT_TICKET_START,
     EDIT_TICKET_SUCCESS,
-    EDIT_TICKET_FAILURE
+    EDIT_TICKET_FAILURE,
+    ASSIGN_TICKET_SUCCESS
 } from '../actions/actions';
 
 const initialState = {
@@ -35,6 +36,7 @@ const initialState = {
     helper: false,
     tickets: [],
     studentTickets: [],
+    helperTickets: [],
     ticketsLoading: false,
     loginLoading: false,
     registerLoading: false,
@@ -99,7 +101,7 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: '',
                 loginLoading: false,
-                userID: action.payload.helperId,
+                userID: action.payload.helperid,
                 user: action.payload,
                 helper: true
             }
@@ -120,8 +122,6 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 registerLoading: false,
                 error: '',
-                userID: action.payload.id,
-                
             }
         case REGISTER_HELPER_FAILURE:
             return {
@@ -218,6 +218,12 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isEditing: false
+            }
+        case ASSIGN_TICKET_SUCCESS:
+            let ticket = {...action.payload, helperId : state.userID }
+            return {
+                ...state,
+                helperTickets: [...state.helperTickets, ticket]
             }
         default:
             return state

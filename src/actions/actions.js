@@ -37,6 +37,8 @@ export const EDIT_TICKET_START = "EDIT_TICKET_START";
 export const EDIT_TICKET_SUCCESS = "EDIT_TICKET_SUCCESS";
 export const EDIT_TICKET_FAILURE = "EDIT_TICKET_FAILURE";
 
+export const ASSIGN_TICKET_SUCCESS = "ASSIGN_TICKET_SUCCESS";
+
 // STUDENTS
 export const loginStudent = credentials => dispatch => {
     dispatch({type: LOGIN_STUDENT_START });
@@ -109,6 +111,10 @@ export const editTicket = (ticket) => dispatch => {
     })
 }
 
+export const assignTicket = ticket => dispatch => {
+    dispatch({ type: ASSIGN_TICKET_SUCCESS, payload: ticket })
+}
+
 // HELPERS
 export const loginHelper = credentials => dispatch => {
     dispatch({type: LOGIN_HELPER_START });
@@ -118,7 +124,7 @@ export const loginHelper = credentials => dispatch => {
             console.log(res)
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('helper', res.data.username)
-            dispatch({ type: LOGIN_HELPER_SUCCESS, payload: res })
+            dispatch({ type: LOGIN_HELPER_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err)

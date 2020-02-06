@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Ticket from '../Ticket';
-import { getAllTickets, editTicket } from '../../actions/actions';
+import { getAllTickets } from '../../actions/actions';
 
 const AllStudentTickets = (props) => {
     useEffect(() => {
@@ -10,16 +10,13 @@ const AllStudentTickets = (props) => {
     }, [])
 
     return (
-        <div className="ticket-container">
-            {props.tickets.length < 1 ? <h1>Create a ticket</h1>
-            :
-            props.tickets.map(ticket => (
-                <Ticket
-                ticket={ticket}
-                />
-            ))
-            }
-        </div>
+            <div className="ticket-container">
+                {props.tickets.map(ticket => (
+                    <Ticket
+                    ticket={ticket}
+                    />
+                ))}
+            </div>
     )
 }
 
@@ -29,4 +26,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getAllTickets, editTicket})(AllStudentTickets);
+export default connect(mapStateToProps, {getAllTickets})(AllStudentTickets);
