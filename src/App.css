@@ -1,4 +1,4 @@
-span {
+.link {
   color: blue;
   text-decoration: underline;
 }
@@ -67,4 +67,14 @@ span {
   justify-content: center;
   height: 60vh;
   align-items: center;
+}
+
+.role-container {
+  display: flex;
+  justify-content: center;
+}
+
+.role {
+  font-size: 4.5rem;
+  padding: 10px;
 }

@@ -17,7 +17,7 @@ const HelperNav = (props) => {
 
     return (
         <div>
-            <Nav tabs>
+            <Nav tabs style={{background: 'black', color: 'white'}}>
                 <NavItem>
                     <NavLink 
                     className={classnames({ active: activeTab === '1' })}

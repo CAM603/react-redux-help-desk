@@ -133,7 +133,7 @@ const AddTicket = (props) => {
                             name="request_stepstaken"
                             value={ticket.request_stepstaken}
                             onChange={handleChange}
-                            placeholder="steps taken"
+                            placeholder="What steps have you taken so far?"
                             />
                         </Col>
                     </FormGroup>
@@ -145,11 +145,11 @@ const AddTicket = (props) => {
                             name="request_details"
                             value={ticket.request_details}
                             onChange={handleChange}
-                            placeholder="details"
+                            placeholder="Describe your issue"
                             />
                         </Col>
                     </FormGroup>
-                    <Button color="success">Add</Button>
+                    <Button size="md" color="primary">Add</Button>
                 </Form>
             </div>
         </div>

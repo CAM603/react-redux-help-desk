@@ -12,58 +12,84 @@ const StudentTicket = (props) => {
         props.deleteTicket(ticketID)
     }
     let topic;
+    let color;
+    let font;
     switch (props.ticket.request_category) {
         case 1:
             topic = "JavaScript";
+            color = "#f0db4f";
             break;
         case 2:
             topic = "CSS";
+            color = "#264de4";
+            font = "#FFFFFF"
             break;
         case 3:
             topic = "Node";
+            color = "#3C873A"
             break;
         case 4:
             topic = "React";
+            color = "#61DBFB"
             break;
         case 5:
             topic = "Redux";
+            color = "#764abc"
             break;
         case 6:
-            topic = "JSON";
+            topic = "{JSON}";
             break;
         case 7:
             topic = "Python";
+            color = "#306998";
+            font = "#FFD43B"
             break;
         case 8:
             topic = "Git";
+            color = "#F1502F"
+            font = "3E2C00"
             break;
         case 9:
             topic = "Postman";
+            color = "#FFFFFF";
+            font = "#EF5B25"
             break;
         case 10:
             topic = "Yarn";
+            color = "#1F88B6";
+            font = "#FFFFFF"
             break;
         case 11:
             topic = "Library Installation";
+            color = "#CC0000";
+            font = "#FFFFFF"
             break;
         case 12:
             topic = "App Deployment";
+            color = "black";
+            font = "#FFFFFF";
     }
     
     return (
         <Card>
-            <CardHeader tag="h3">
+            <CardHeader tag="h3" style={{background: color, color: font}}>
                 {topic}
             </CardHeader>
             <CardBody>
                 <CardTitle>
-                    {props.ticket.request_title}
+                    Title: {props.ticket.request_title}
                 </CardTitle>
+                <CardText>
+                    <h4>{props.ticket.request_title}</h4>
+                    <p>{props.ticket.request_details}</p>
+                    <h4>Steps Taken</h4>
+                    <p>{props.ticket.request_stepstaken}</p>
+                </CardText>
             </CardBody>
             <CardFooter>
                 <Button 
                 size="sm" 
-                color="info" 
+                color="success" 
                 onClick={() => {props.editHandler(props.ticket)}}>edit</Button>
                     {' '}
                 <Button 

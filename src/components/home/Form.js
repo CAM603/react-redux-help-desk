@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import Login from '../forms/Login';
 import Signup from '../forms/Signup';
 
-import { Container, Row, Col, Button, Jumbotron } from 'reactstrap';
-
 const Form = (props) => {
     const [type, setType] = useState('login')
     return (
@@ -15,12 +13,15 @@ const Form = (props) => {
             {type === 'login' 
             ? 
             <div className="login-footer">
-                <p>Not signed up? <span onClick={() => setType('signup')}>Sign Up</span></p> 
+                <p>Not signed up?{' '}
+                    <span className="link" onClick={() => setType('signup')}>Sign Up</span>
+                </p> 
             </div>
             : 
             <div className='login-footer'>
-                <p>Already registered? <span onClick={() => setType('login')}>Log In</span></p>
-                
+                <p>Already registered?{' '} 
+                    <span className="link" onClick={() => setType('login')}>Log In</span>
+                </p>
             </div>
                 }
         </div>
