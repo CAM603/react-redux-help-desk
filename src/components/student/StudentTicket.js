@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { deleteTicket } from '../actions/actions'
+import { deleteTicket } from '../../actions/actions'
 
-import { Toast, ToastBody, ToastHeader, Button } from 'reactstrap'
+import { Card, CardHeader, CardFooter, CardBody,
+    CardTitle, CardText, Button } from 'reactstrap'
 
 const StudentTicket = (props) => {
     
@@ -48,24 +49,29 @@ const StudentTicket = (props) => {
         case 12:
             topic = "App Deployment";
     }
+    
     return (
-        <Toast>
-            <ToastHeader>
+        <Card>
+            <CardHeader tag="h3">
                 {topic}
-            </ToastHeader>
-            <ToastBody>
-                {props.ticket.request_title}
-            </ToastBody>
-            <Button 
-            size="sm" 
-            color="info" 
-            onClick={() => props.editHandler(props.ticket)}>edit</Button>
-                {' '}
-            <Button 
-            size="sm" 
-            color="danger" 
-            onClick={() => deleteTicket(props.ticket.id)}>Delete</Button>
-        </Toast>
+            </CardHeader>
+            <CardBody>
+                <CardTitle>
+                    {props.ticket.request_title}
+                </CardTitle>
+            </CardBody>
+            <CardFooter>
+                <Button 
+                size="sm" 
+                color="info" 
+                onClick={() => {props.editHandler(props.ticket)}}>edit</Button>
+                    {' '}
+                <Button 
+                size="sm" 
+                color="danger" 
+                onClick={() => deleteTicket(props.ticket.id)}>Delete</Button>
+            </CardFooter>
+        </Card>
     )
 }
 const mapStateToProps = (state) => {

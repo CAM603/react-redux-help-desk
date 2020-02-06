@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, FormGroup, Input, Button, Label } from 'reactstrap';
+import { connect } from 'react-redux'
 
 const EditTicket = (props) => {
     const [ticket, setTicket] = useState(props.currentTicket)
@@ -54,10 +55,11 @@ const EditTicket = (props) => {
         })
     }
     const handleSubmit = (event) => {
+
         event.preventDefault()
-        console.log('submitted ticket', ticket)
         props.updateTicket(ticket)
     }
+    
     return (
         <div>
             <Form onSubmit={handleSubmit}>
@@ -94,7 +96,7 @@ const EditTicket = (props) => {
                 <FormGroup>
                     <Label>Steps Taken</Label>
                     <Input
-                    type="text"
+                    type="textarea"
                     name="request_stepstaken"
                     value={ticket.request_stepstaken}
                     onChange={handleChange}
@@ -104,7 +106,7 @@ const EditTicket = (props) => {
                 <FormGroup>
                     <Label>Details</Label>
                     <Input
-                    type="text"
+                    type="textarea"
                     name="request_details"
                     value={ticket.request_details}
                     onChange={handleChange}
@@ -116,5 +118,9 @@ const EditTicket = (props) => {
         </div>
     )
 }
-
-export default EditTicket;
+const mapStateToProps = state => {
+    return {
+        id: state.userID
+    }
+}
+export default connect(mapStateToProps)(EditTicket);

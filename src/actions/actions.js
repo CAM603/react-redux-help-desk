@@ -25,6 +25,10 @@ export const GET_STUDENT_TICKETS_START = "GET_STUDENT_TICKETS_START";
 export const GET_STUDENT_TICKETS_SUCCESS = "GET_STUDENT_TICKETS_SUCCESS";
 export const GET_STUDENT_TICKETS_FAILURE = "GET_STUDENT_TICKETS_FAILURE";
 
+export const GET_HELPER_TICKETS_START = "GET_HELPER_TICKETS_START";
+export const GET_HELPER_TICKETS_SUCCESS = "GET_HELPER_TICKETS_SUCCESS";
+export const GET_HELPER_TICKETS_FAILURE = "GET_HELPER_TICKETS_FAILURE";
+
 export const ADD_TICKET_START = "ADD_TICKET_START";
 export const ADD_TICKET_SUCCESS = "ADD_TICKET_SUCCESS";
 export const ADD_TICKET_FAILURE = "ADD_TICKET_FAILURE";
@@ -36,6 +40,8 @@ export const DELETE_TICKET_FAILURE = "DELETE_TICKET_FAILURE";
 export const EDIT_TICKET_START = "EDIT_TICKET_START";
 export const EDIT_TICKET_SUCCESS = "EDIT_TICKET_SUCCESS";
 export const EDIT_TICKET_FAILURE = "EDIT_TICKET_FAILURE";
+
+export const ASSIGN_TICKET_SUCCESS = "ASSIGN_TICKET_SUCCESS";
 
 // STUDENTS
 export const loginStudent = credentials => dispatch => {
@@ -70,10 +76,11 @@ export const registerStudent = newStudent => dispatch => {
 
 export const addTicket = (ticket) => dispatch => {
     dispatch({ type: ADD_TICKET_START })
+    console.log("ticket", ticket)
     axiosWithAuth()
     .post('/requests', ticket)
     .then(res => {
-        console.log(res)
+        console.log('ADD',res)
         dispatch({ type: ADD_TICKET_SUCCESS, payload: res.data })
     })
     .catch(err => {
@@ -101,12 +108,17 @@ export const editTicket = (ticket) => dispatch => {
     axiosWithAuth()
     .put(`/requests/${ticket.id}`, ticket)
     .then(res => {
-        dispatch({ type: EDIT_TICKET_SUCCESS, payload: res.data })
+        console.log('edit', res)
+        dispatch({ type: EDIT_TICKET_SUCCESS, payload: ticket })
     })
     .catch(err => {
         console.log(err)
         dispatch({ type: EDIT_TICKET_FAILURE })
     })
+}
+
+export const assignTicket = ticket => dispatch => {
+    dispatch({ type: ASSIGN_TICKET_SUCCESS, payload: ticket })
 }
 
 // HELPERS
@@ -117,7 +129,8 @@ export const loginHelper = credentials => dispatch => {
         .then(res => {
             console.log(res)
             localStorage.setItem('token', res.data.token)
-            dispatch({ type: LOGIN_HELPER_SUCCESS, payload: res.data.helperid })
+            localStorage.setItem('helper', res.data.username)
+            dispatch({ type: LOGIN_HELPER_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err)
@@ -131,7 +144,7 @@ export const registerHelper = newHelper => dispatch => {
         .post('https://devdeskdb.herokuapp.com/api/auth/helpers/register', newHelper)
         .then(res => {
             console.log(res)
-            dispatch({ type: REGISTER_HELPER_SUCCESS, payload: res.data.id })
+            dispatch({ type: REGISTER_HELPER_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err)
@@ -163,6 +176,21 @@ export const getStudentTickets = (id) => dispatch => {
         })
         .catch(err => {
             dispatch({ type: GET_STUDENT_TICKETS_FAILURE })
+            console.log(err)
+        })
+}
+
+export const getHelperTickets = (id) => dispatch => {
+    dispatch({ type: GET_HELPER_TICKETS_START })
+    axiosWithAuth()
+        .get(`helpers/${id}/requests`)
+        .then(res => {
+            console.log(res)
+            dispatch({ type: GET_HELPER_TICKETS_SUCCESS, payload: res.data })
+            console.log(res)
+        })
+        .catch(err => {
+            dispatch({ type: GET_HELPER_TICKETS_FAILURE })
             console.log(err)
         })
 }

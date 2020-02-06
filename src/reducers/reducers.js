@@ -17,6 +17,9 @@ import {
     GET_STUDENT_TICKETS_START,
     GET_STUDENT_TICKETS_SUCCESS,
     GET_STUDENT_TICKETS_FAILURE,
+    GET_HELPER_TICKETS_START,
+    GET_HELPER_TICKETS_SUCCESS,
+    GET_HELPER_TICKETS_FAILURE,
     ADD_TICKET_START,
     ADD_TICKET_SUCCESS,
     ADD_TICKET_FAILURE,
@@ -25,7 +28,8 @@ import {
     DELETE_TICKET_FAILURE,
     EDIT_TICKET_START,
     EDIT_TICKET_SUCCESS,
-    EDIT_TICKET_FAILURE
+    EDIT_TICKET_FAILURE,
+    ASSIGN_TICKET_SUCCESS
 } from '../actions/actions';
 
 const initialState = {
@@ -35,6 +39,7 @@ const initialState = {
     helper: false,
     tickets: [],
     studentTickets: [],
+    helperTickets: [],
     ticketsLoading: false,
     loginLoading: false,
     registerLoading: false,
@@ -78,7 +83,7 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 registerLoading: false,
                 error: '',
-                userID: action.payload,
+                userID: action.payload.id,
                 
             }
         case REGISTER_STUDENT_FAILURE:
@@ -99,7 +104,8 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: '',
                 loginLoading: false,
-                userID: action.payload,
+                userID: action.payload.helperid,
+                user: action.payload,
                 helper: true
             }
         case LOGIN_HELPER_FAILURE:
@@ -119,8 +125,6 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 registerLoading: false,
                 error: '',
-                userID: action.payload,
-                
             }
         case REGISTER_HELPER_FAILURE:
             return {
@@ -165,6 +169,24 @@ export const rootReducer = (state = initialState, action) => {
                 ticketsLoading: false,
                 error: action.payload
             }
+        case GET_HELPER_TICKETS_START:
+            return {
+                ...state,
+                ticketsLoading: true,
+                error: ''
+            }
+        case GET_HELPER_TICKETS_SUCCESS:
+            return {
+                ...state,
+                ticketsLoading: false,
+                helperTickets: action.payload
+            }
+        case GET_HELPER_TICKETS_FAILURE:
+            return {
+                ...state,
+                ticketsLoading: false,
+                error: action.payload
+            }
         case ADD_TICKET_START:
             return {
                 ...state,
@@ -174,7 +196,8 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAdding: false,
-                tickets: [...state.tickets, action.payload]
+                tickets: [...state.tickets, action.payload],
+                studentTickets: [...state.studentTickets, action.payload]
             }
         case ADD_TICKET_FAILURE:
             return {
@@ -189,11 +212,13 @@ export const rootReducer = (state = initialState, action) => {
         case DELETE_TICKET_SUCCESS:
             let filteredTickets = state.tickets.filter(ticket => ticket.id !== action.payload)
             let filteredTickets2 = state.studentTickets.filter(ticket => ticket.id !== action.payload)
+            let filteredTickets3 = state.helperTickets.filter(ticket => ticket.id !== action.payload)
             return {
                 ...state,
                 isDeleting: false,
                 tickets: filteredTickets,
-                studentTickets: filteredTickets2
+                studentTickets: filteredTickets2,
+                helperTickets: filteredTickets3
             }
         case DELETE_TICKET_FAILURE:
             return {
@@ -206,7 +231,7 @@ export const rootReducer = (state = initialState, action) => {
                 isEditing: true
             }
         case EDIT_TICKET_SUCCESS:
-            let updatedTickets = state.tickets.map(ticket => ticket === action.payload ? action.payload : ticket)
+            let updatedTickets = state.tickets.map(ticket => ticket.id === action.payload.id ? action.payload : ticket)
             return {
                 ...state,
                 isEditing: false,
@@ -216,6 +241,12 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isEditing: false
+            }
+        case ASSIGN_TICKET_SUCCESS:
+            let ticket = {...action.payload, helperId : state.userID }
+            return {
+                ...state,
+                helperTickets: [...state.helperTickets, ticket]
             }
         default:
             return state

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import Ticket from './Ticket';
-import { getAllTickets, editTicket } from '../actions/actions';
+import Ticket from '../Ticket';
+import { getAllTickets } from '../../actions/actions';
 
-const AllStudentTickets = (props) => {
+const AllHelperTickets = (props) => {
     useEffect(() => {
         props.getAllTickets()
     }, [])
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getAllTickets, editTicket})(AllStudentTickets);
+export default connect(mapStateToProps, {getAllTickets})(AllHelperTickets);

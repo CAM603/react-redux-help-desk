@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-import { registerStudent, registerHelper } from '../actions/actions';
+import { registerStudent, registerHelper } from '../../actions/actions';
 
 const Signup = (props) => {
     const [newUser, setNewUser] = useState({
@@ -60,7 +60,7 @@ const Signup = (props) => {
                     onChange={handleChange}
                     />
                 </FormGroup>
-                <Button>Register</Button>
+                <Button outline color="primary">Register</Button>
             </Form>
         </div>
     )

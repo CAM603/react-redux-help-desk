@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
-const StudentNav = (props) => {
+const HelperNav = (props) => {
     const [activeTab, setActiveTab] = useState('1');
 
     const toggle = tab => {
@@ -11,7 +11,7 @@ const StudentNav = (props) => {
 
     const logout = () => {
         localStorage.removeItem('token')
-        localStorage.removeItem('student')
+        localStorage.removeItem('helper')
         props.history.push('/')
     }
 
@@ -49,16 +49,6 @@ const StudentNav = (props) => {
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink 
-                    className={classnames({ active: activeTab === '4' })}
-                    onClick={() => { 
-                        toggle('4'); 
-                        props.setTab('add')
-                        }}>
-                        Add Ticket
-                    </NavLink>
-                </NavItem>
-                <NavItem>
                     <NavLink onClick={logout}>Log Out</NavLink>
                 </NavItem>
             </Nav>
@@ -66,4 +56,4 @@ const StudentNav = (props) => {
     )
 }
 
-export default StudentNav;
+export default HelperNav;

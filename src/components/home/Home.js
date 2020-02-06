@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Form from './Form';
 
-import { connect } from 'react-redux';
-
 import { Container, Row, Col, Button, Jumbotron } from 'reactstrap';
 
 const Home = (props) => {
@@ -19,39 +17,31 @@ const Home = (props) => {
     let greeting;
 
     if (role === 'student') {
-        display = (
-            <div>
-                <Form {...props} role="student"/>
-            </div>
-        )
-        greeting = (
-            <h2>Welcome Student!</h2>
-        )
+        display = <Form {...props} role="student"/>
+        
+        greeting = <h2>Welcome Student!</h2>
+
     } else if (role === 'helper') {
-        display = (
-            <div>
-                <Form {...props} role="helper"/>
-            </div>
-        )
-        greeting = (
-            <h2>Welcome Helper!</h2>
-        )
+        display = <Form {...props} role="helper"/>
+        
+        greeting = <h2>Welcome Helper!</h2>
+        
     } else {
         display = null;
         
     }   
     
     return (
-        <Container>
+        <Container style={{textAlign: 'center'}}>
             <Jumbotron>
                 <h1>Hello, welcome to the best help app!</h1>
                 <hr/>
-                <h2>Are you the student or helper?</h2>
+                <h2>Are you a student or helper?</h2>
             <Row>
-                <Col>
+                <Col xs='7'>
                     <Button color="primary" size="lg" onClick={setStudent}>student</Button>
                 </Col>
-                <Col>
+                <Col xs='3'>
                     <Button color="success" size="lg" onClick={setHelper}>helper</Button>
                 </Col>
             </Row>
@@ -69,9 +59,5 @@ const Home = (props) => {
         </Container>
     )
 }
-const mapStateToProps = state => {
-    return {
-        id: state.userID
-    }
-}
-export default connect(mapStateToProps, {})(Home);
+
+export default Home;
