@@ -15,7 +15,11 @@ const StudentView = (props) => {
     
     let display;
     if(tab === 'home') {
-        display = <h1>Welcome back, {name}</h1>
+        display = (
+            <div className="welcome">
+                <h1>Welcome back, {name}</h1>
+            </div>
+        )
     }
     if(tab === 'all') {
         display = <AllStudentTickets />

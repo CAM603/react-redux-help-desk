@@ -20,9 +20,9 @@ const StudentTickets = (props) => {
     })
     const [currentTicket, setCurrentTicket] = useState(initialTicket)
 
-    useEffect(() => {
-        props.getStudentTickets(props.id)
-    }, [])
+    // useEffect(() => {
+    //     props.getStudentTickets(props.id)
+    // }, [])
     
     const editHandler = (ticket) => {
         setEditing(true)
@@ -46,7 +46,7 @@ const StudentTickets = (props) => {
         props.editTicket(updatedTicket)
         props.getStudentTickets(props.id)
     }
-    console.log(props.studentTickets)
+    
     return (
         <div className="ticket-container">
             

@@ -10,7 +10,11 @@ const HelperView = (props) => {
 
     let display;
     if(tab === 'home') {
-        display = <h1>Welcome back, {name}</h1>
+        display = (
+            <div className="welcome">
+                <h1>Welcome back, {name}</h1>
+            </div>
+        )
     }
     if(tab === 'all') {
         
@@ -19,9 +23,6 @@ const HelperView = (props) => {
     if(tab === 'mine') {
     
         display = <HelperTickets />
-    }
-    if(tab === 'add') {
-        display = <p>idk if I need this</p>
     }
 
     return (

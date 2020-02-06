@@ -27,21 +27,21 @@ const Home = (props) => {
         greeting = <h2>Welcome Helper!</h2>
         
     } else {
-        display = <h2>Stop waiting for help</h2>;
+        display = null;
         
     }   
     
     return (
-        <Container>
+        <Container style={{textAlign: 'center'}}>
             <Jumbotron>
                 <h1>Hello, welcome to the best help app!</h1>
                 <hr/>
-                <h2>Are you the student or helper?</h2>
+                <h2>Are you a student or helper?</h2>
             <Row>
-                <Col>
+                <Col xs='7'>
                     <Button color="primary" size="lg" onClick={setStudent}>student</Button>
                 </Col>
-                <Col>
+                <Col xs='3'>
                     <Button color="success" size="lg" onClick={setHelper}>helper</Button>
                 </Col>
             </Row>

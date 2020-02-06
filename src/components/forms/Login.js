@@ -56,7 +56,7 @@ const Login = (props) => {
                         />
                         {<p>{props.error}</p>}
                 </FormGroup>
-                <Button>Log in</Button>
+                <Button outline color="primary">Log in</Button>
             </Form>
         </div>
     )

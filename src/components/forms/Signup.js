@@ -60,7 +60,7 @@ const Signup = (props) => {
                     onChange={handleChange}
                     />
                 </FormGroup>
-                <Button>Register</Button>
+                <Button outline color="primary">Register</Button>
             </Form>
         </div>
     )

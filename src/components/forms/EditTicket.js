@@ -96,7 +96,7 @@ const EditTicket = (props) => {
                 <FormGroup>
                     <Label>Steps Taken</Label>
                     <Input
-                    type="text"
+                    type="textarea"
                     name="request_stepstaken"
                     value={ticket.request_stepstaken}
                     onChange={handleChange}
@@ -106,7 +106,7 @@ const EditTicket = (props) => {
                 <FormGroup>
                     <Label>Details</Label>
                     <Input
-                    type="text"
+                    type="textarea"
                     name="request_details"
                     value={ticket.request_details}
                     onChange={handleChange}

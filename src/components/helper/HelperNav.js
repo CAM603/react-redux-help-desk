@@ -49,16 +49,6 @@ const HelperNav = (props) => {
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink 
-                    className={classnames({ active: activeTab === '4' })}
-                    onClick={() => { 
-                        toggle('4'); 
-                        props.setTab('add')
-                        }}>
-                        Something...
-                    </NavLink>
-                </NavItem>
-                <NavItem>
                     <NavLink onClick={logout}>Log Out</NavLink>
                 </NavItem>
             </Nav>
