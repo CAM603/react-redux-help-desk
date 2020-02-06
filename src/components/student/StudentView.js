@@ -8,6 +8,7 @@ import AllStudentTickets from './AllStudentTickets';
 import StudentTickets from './StudentTickets';
 
 const StudentView = (props) => {
+    const [activeTab, setActiveTab] = useState('1');
     const [tab, setTab] = useState('home')
     let name = localStorage.getItem('student')
     name = name.charAt(0).toUpperCase() + name.slice(1)
@@ -23,11 +24,11 @@ const StudentView = (props) => {
         display = <StudentTickets/>
     }
     if(tab === 'add') {
-        display = <AddTicket setTab={setTab}/>
+        display = <AddTicket setTab={setTab} setActiveTab={setActiveTab}/>
     }
     return (
         <div>
-            <StudentNav {...props} setTab={setTab}/>
+            <StudentNav {...props} setTab={setTab} activeTab={activeTab} setActiveTab={setActiveTab}/>
             {display}
         </div>
     )

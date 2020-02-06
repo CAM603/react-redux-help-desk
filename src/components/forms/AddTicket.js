@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addTicket } from '../../actions/actions';
 
-import { Form, FormGroup, Input, Button, Label } from 'reactstrap';
+import { Form, FormGroup, Input, Button, Label, Col } from 'reactstrap';
 
 const AddTicket = (props) => {
     let today = new Date();
@@ -83,65 +83,76 @@ const AddTicket = (props) => {
             creatorId: props.userID
         })
         props.setTab('mine')
+        props.setActiveTab('3')
     }
     
     console.log(ticket)
     return (
-        
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                    <Label>Category</Label>
-                    <Input
-                    type="select"
-                    name="request_category"
-                    onChange={handleChange}>
-                        <option>JavaScript</option>
-                        <option>CSS</option>
-                        <option>Node</option>
-                        <option>React</option>
-                        <option>Redux</option>
-                        <option>JSON</option>
-                        <option>Python</option>
-                        <option>Git</option>
-                        <option>Postman</option>
-                        <option>Yarn</option>
-                        <option>Library Installation</option>
-                        <option>App Deployment</option>
-                    </Input>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Title</Label>
-                    <Input
-                    type="text"
-                    name="request_title"
-                    value={ticket.request_title}
-                    onChange={handleChange}
-                    placeholder="title"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Steps Taken</Label>
-                    <Input
-                    type="text"
-                    name="request_stepstaken"
-                    value={ticket.request_stepstaken}
-                    onChange={handleChange}
-                    placeholder="steps taken"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Details</Label>
-                    <Input
-                    type="text"
-                    name="request_details"
-                    value={ticket.request_details}
-                    onChange={handleChange}
-                    placeholder="details"
-                    />
-                </FormGroup>
-                <Button>Add</Button>
-            </Form>
-        
+        <div style={{display: "flex", justifyContent: 'center', alignItems: 'center', height: '70vh'}}>
+            <div className="add-ticket">
+                <Form onSubmit={handleSubmit}>
+                    <FormGroup row>
+                        <Label sm={2}>Category</Label>
+                        <Col sm={10}>
+                            <Input
+                            type="select"
+                            name="request_category"
+                            onChange={handleChange}>
+                                <option>JavaScript</option>
+                                <option>CSS</option>
+                                <option>Node</option>
+                                <option>React</option>
+                                <option>Redux</option>
+                                <option>JSON</option>
+                                <option>Python</option>
+                                <option>Git</option>
+                                <option>Postman</option>
+                                <option>Yarn</option>
+                                <option>Library Installation</option>
+                                <option>App Deployment</option>
+                            </Input>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label sm={2}>Title</Label>
+                        <Col sm={10}>
+                            <Input
+                            type="text"
+                            name="request_title"
+                            value={ticket.request_title}
+                            onChange={handleChange}
+                            placeholder="title"
+                            />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label sm={2}>Steps Taken</Label>
+                        <Col sm={10}>
+                            <Input
+                            type="textarea"
+                            name="request_stepstaken"
+                            value={ticket.request_stepstaken}
+                            onChange={handleChange}
+                            placeholder="steps taken"
+                            />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label sm={2}>Details</Label>
+                        <Col sm={10}>
+                            <Input
+                            type="textarea"
+                            name="request_details"
+                            value={ticket.request_details}
+                            onChange={handleChange}
+                            placeholder="details"
+                            />
+                        </Col>
+                    </FormGroup>
+                    <Button color="success">Add</Button>
+                </Form>
+            </div>
+        </div>
     )
 }
 const mapStateToProps = (state) => {

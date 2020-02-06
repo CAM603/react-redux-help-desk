@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getStudentTickets, editTicket } from '../../actions/actions'
 import StudentTicket from './StudentTicket';
 import EditTicket from '../forms/EditTicket';
+import '../.././App.css'
 
 const StudentTickets = (props) => {
     const [editing, setEditing] = useState(false)
@@ -56,13 +57,15 @@ const StudentTickets = (props) => {
             ))
             }
             {editing 
-            ? 
-            <EditTicket
-            editing={editing}
-            setEditing={setEditing}
-            currentTicket={currentTicket}
-            updateTicket={updateTicket}
-            />
+            ?
+            <div className="modalz">
+                <EditTicket
+                editing={editing}
+                setEditing={setEditing}
+                currentTicket={currentTicket}
+                updateTicket={updateTicket}
+                />
+            </div>
             :
             null
             }

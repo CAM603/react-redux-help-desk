@@ -59,7 +59,7 @@ const StudentTicket = (props) => {
             <Button 
             size="sm" 
             color="info" 
-            onClick={() => props.editHandler(props.ticket)}>edit</Button>
+            onClick={() => {props.editHandler(props.ticket)}}>edit</Button>
                 {' '}
             <Button 
             size="sm" 

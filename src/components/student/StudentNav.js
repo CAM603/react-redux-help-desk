@@ -3,10 +3,9 @@ import classnames from 'classnames';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
 const StudentNav = (props) => {
-    const [activeTab, setActiveTab] = useState('1');
 
     const toggle = tab => {
-    if(activeTab !== tab) setActiveTab(tab);
+    if(props.activeTab !== tab) props.setActiveTab(tab);
     }
 
     const logout = () => {
@@ -20,7 +19,7 @@ const StudentNav = (props) => {
             <Nav tabs>
                 <NavItem>
                     <NavLink 
-                    className={classnames({ active: activeTab === '1' })}
+                    className={classnames({ active: props.activeTab === '1' })}
                     onClick={() => { 
                         toggle('1');
                         props.setTab('home')
@@ -30,7 +29,7 @@ const StudentNav = (props) => {
                 </NavItem>
                 <NavItem>
                     <NavLink 
-                    className={classnames({ active: activeTab === '2' })}
+                    className={classnames({ active: props.activeTab === '2' })}
                     onClick={() => { 
                         toggle('2');
                         props.setTab('all')
@@ -40,7 +39,7 @@ const StudentNav = (props) => {
                 </NavItem>
                 <NavItem>
                     <NavLink 
-                    className={classnames({ active: activeTab === '3' })}
+                    className={classnames({ active: props.activeTab === '3' })}
                     onClick={() => { 
                         toggle('3'); 
                         props.setTab('mine')
@@ -50,7 +49,7 @@ const StudentNav = (props) => {
                 </NavItem>
                 <NavItem>
                     <NavLink 
-                    className={classnames({ active: activeTab === '4' })}
+                    className={classnames({ active: props.activeTab === '4' })}
                     onClick={() => { 
                         toggle('4'); 
                         props.setTab('add')
