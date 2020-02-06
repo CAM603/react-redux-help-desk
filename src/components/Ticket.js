@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux'
 
-import { assignTicket }from '../actions/actions';
+import { assignTicket, getHelperTickets }from '../actions/actions';
 
 import { Card, CardHeader, CardFooter, CardBody,
     CardTitle, CardText, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
@@ -52,6 +52,7 @@ const Ticket = ({ticket, helper, assignTicket}) => {
     }
     const assign = (ticket) => {
         assignTicket(ticket)
+        getHelperTickets()
     }
     return (
         <>
@@ -96,7 +97,8 @@ const Ticket = ({ticket, helper, assignTicket}) => {
 }
 const mapStateToProps = state => {
     return {
-        helper: state.helper
+        helper: state.helper,
+        id: state.userID
     }
 }
-export default connect(mapStateToProps, {assignTicket})(Ticket);
+export default connect(mapStateToProps, {assignTicket, getHelperTickets})(Ticket);

@@ -17,6 +17,9 @@ import {
     GET_STUDENT_TICKETS_START,
     GET_STUDENT_TICKETS_SUCCESS,
     GET_STUDENT_TICKETS_FAILURE,
+    GET_HELPER_TICKETS_START,
+    GET_HELPER_TICKETS_SUCCESS,
+    GET_HELPER_TICKETS_FAILURE,
     ADD_TICKET_START,
     ADD_TICKET_SUCCESS,
     ADD_TICKET_FAILURE,
@@ -166,6 +169,24 @@ export const rootReducer = (state = initialState, action) => {
                 ticketsLoading: false,
                 error: action.payload
             }
+        case GET_HELPER_TICKETS_START:
+            return {
+                ...state,
+                ticketsLoading: true,
+                error: ''
+            }
+        case GET_HELPER_TICKETS_SUCCESS:
+            return {
+                ...state,
+                ticketsLoading: false,
+                helperTickets: action.payload
+            }
+        case GET_HELPER_TICKETS_FAILURE:
+            return {
+                ...state,
+                ticketsLoading: false,
+                error: action.payload
+            }
         case ADD_TICKET_START:
             return {
                 ...state,
@@ -191,11 +212,13 @@ export const rootReducer = (state = initialState, action) => {
         case DELETE_TICKET_SUCCESS:
             let filteredTickets = state.tickets.filter(ticket => ticket.id !== action.payload)
             let filteredTickets2 = state.studentTickets.filter(ticket => ticket.id !== action.payload)
+            let filteredTickets3 = state.helperTickets.filter(ticket => ticket.id !== action.payload)
             return {
                 ...state,
                 isDeleting: false,
                 tickets: filteredTickets,
-                studentTickets: filteredTickets2
+                studentTickets: filteredTickets2,
+                helperTickets: filteredTickets3
             }
         case DELETE_TICKET_FAILURE:
             return {

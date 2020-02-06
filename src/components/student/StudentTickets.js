@@ -46,7 +46,7 @@ const StudentTickets = (props) => {
         props.editTicket(updatedTicket)
         props.getStudentTickets(props.id)
     }
-    
+    console.log(props.studentTickets)
     return (
         <div className="ticket-container">
             

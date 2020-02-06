@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import HelperNav from './HelperNav';
 import AllHelperTickets from './AllHelperTickets';
+import HelperTickets from './HelperTickets';
 
 const HelperView = (props) => {
     const [tab, setTab] = useState('home')
@@ -16,8 +17,8 @@ const HelperView = (props) => {
         display = <AllHelperTickets/>
     }
     if(tab === 'mine') {
-        // display = <HelperTickets/>
-        display = <p>Tickets assigned to this helper</p>
+    
+        display = <HelperTickets />
     }
     if(tab === 'add') {
         display = <p>idk if I need this</p>

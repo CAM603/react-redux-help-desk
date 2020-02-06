@@ -25,6 +25,10 @@ export const GET_STUDENT_TICKETS_START = "GET_STUDENT_TICKETS_START";
 export const GET_STUDENT_TICKETS_SUCCESS = "GET_STUDENT_TICKETS_SUCCESS";
 export const GET_STUDENT_TICKETS_FAILURE = "GET_STUDENT_TICKETS_FAILURE";
 
+export const GET_HELPER_TICKETS_START = "GET_HELPER_TICKETS_START";
+export const GET_HELPER_TICKETS_SUCCESS = "GET_HELPER_TICKETS_SUCCESS";
+export const GET_HELPER_TICKETS_FAILURE = "GET_HELPER_TICKETS_FAILURE";
+
 export const ADD_TICKET_START = "ADD_TICKET_START";
 export const ADD_TICKET_SUCCESS = "ADD_TICKET_SUCCESS";
 export const ADD_TICKET_FAILURE = "ADD_TICKET_FAILURE";
@@ -172,6 +176,21 @@ export const getStudentTickets = (id) => dispatch => {
         })
         .catch(err => {
             dispatch({ type: GET_STUDENT_TICKETS_FAILURE })
+            console.log(err)
+        })
+}
+
+export const getHelperTickets = (id) => dispatch => {
+    dispatch({ type: GET_HELPER_TICKETS_START })
+    axiosWithAuth()
+        .get(`helpers/${id}/requests`)
+        .then(res => {
+            console.log(res)
+            dispatch({ type: GET_HELPER_TICKETS_SUCCESS, payload: res.data })
+            console.log(res)
+        })
+        .catch(err => {
+            dispatch({ type: GET_HELPER_TICKETS_FAILURE })
             console.log(err)
         })
 }
