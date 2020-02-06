@@ -17,25 +17,17 @@ const Home = (props) => {
     let greeting;
 
     if (role === 'student') {
-        display = (
-            <div>
-                <Form {...props} role="student"/>
-            </div>
-        )
-        greeting = (
-            <h2>Welcome Student!</h2>
-        )
+        display = <Form {...props} role="student"/>
+        
+        greeting = <h2>Welcome Student!</h2>
+
     } else if (role === 'helper') {
-        display = (
-            <div>
-                <Form {...props} role="helper"/>
-            </div>
-        )
-        greeting = (
-            <h2>Welcome Helper!</h2>
-        )
+        display = <Form {...props} role="helper"/>
+        
+        greeting = <h2>Welcome Helper!</h2>
+        
     } else {
-        display = null;
+        display = <h2>Stop waiting for help</h2>;
         
     }   
     

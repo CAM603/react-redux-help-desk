@@ -88,7 +88,7 @@ const AddTicket = (props) => {
     
     console.log(ticket)
     return (
-        <div style={{display: "flex", justifyContent: 'center', alignItems: 'center', height: '70vh'}}>
+        <div className="add-ticket-container">
             <div className="add-ticket">
                 <Form onSubmit={handleSubmit}>
                     <FormGroup row>

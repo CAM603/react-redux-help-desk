@@ -175,7 +175,8 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAdding: false,
-                tickets: [...state.tickets, action.payload]
+                tickets: [...state.tickets, action.payload],
+                studentTickets: [...state.studentTickets, action.payload]
             }
         case ADD_TICKET_FAILURE:
             return {

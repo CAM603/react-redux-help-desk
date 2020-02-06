@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 
-import { Toast, ToastBody, ToastHeader, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Card, CardHeader, CardFooter, CardBody,
+    CardTitle, CardText, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+
 
 const Ticket = ({ticket}) => {
     const [modal, setModal] = useState(false);
@@ -45,28 +47,39 @@ const Ticket = ({ticket}) => {
         case 12:
             topic = "App Deployment";
     }
-
+    
     return (
-        <Toast>
-            <ToastHeader icon="success">
-                {ticket.request_date,' '}{topic}
-            </ToastHeader>
-            <ToastBody>
-                {ticket.request_title}
-            </ToastBody>
-            <Button size='sm' color="info" onClick={toggle}>Info</Button>
+        <>
+            <Card>
+                <CardHeader tag="h3">
+                    {topic}
+                </CardHeader>
+                <CardBody>
+                    <CardTitle>
+                        {ticket.request_title}
+                    </CardTitle>
+                    <CardText>
+                    
+                    </CardText>
+                </CardBody>
+                <CardFooter>
+                    <Button size='sm' color="info" onClick={toggle}>Details</Button>
+                </CardFooter>
+            </Card>
             <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>{topic}</ModalHeader>
+                <ModalHeader tag="h3" toggle={toggle}>{topic}</ModalHeader>
                 <ModalBody>
-                    <h3>{ticket.request_title}</h3>
+
+                    <h4>{ticket.request_title}:</h4>
                     <p>{ticket.request_details}</p>
+                    <h4>Steps Taken:</h4>
+                    <p>{ticket.request_stepstaken}</p>
                 </ModalBody>
                 <ModalFooter>
-                    <h3>Steps Taken</h3>
-                    <p>{ticket.request_stepstaken}</p>
+                    <p>Date created: {ticket.request_date}</p>
                 </ModalFooter>
             </Modal>
-        </Toast>
+        </>
     )
 }
 
