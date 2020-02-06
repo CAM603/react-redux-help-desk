@@ -72,10 +72,11 @@ export const registerStudent = newStudent => dispatch => {
 
 export const addTicket = (ticket) => dispatch => {
     dispatch({ type: ADD_TICKET_START })
+    console.log("ticket", ticket)
     axiosWithAuth()
     .post('/requests', ticket)
     .then(res => {
-        console.log(res)
+        console.log('ADD',res)
         dispatch({ type: ADD_TICKET_SUCCESS, payload: res.data })
     })
     .catch(err => {
@@ -103,7 +104,8 @@ export const editTicket = (ticket) => dispatch => {
     axiosWithAuth()
     .put(`/requests/${ticket.id}`, ticket)
     .then(res => {
-        dispatch({ type: EDIT_TICKET_SUCCESS, payload: res.data })
+        console.log('edit', res)
+        dispatch({ type: EDIT_TICKET_SUCCESS, payload: ticket })
     })
     .catch(err => {
         console.log(err)

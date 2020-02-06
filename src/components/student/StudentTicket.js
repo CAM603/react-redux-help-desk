@@ -49,6 +49,7 @@ const StudentTicket = (props) => {
         case 12:
             topic = "App Deployment";
     }
+    
     return (
         <Card>
             <CardHeader tag="h3">

@@ -33,25 +33,26 @@ const StudentTickets = (props) => {
             request_category: ticket.request_category,
             request_date: ticket.request_date, 
             request_details: ticket.request_details,
-            creatorId: ticket.creatorId, 
+            creatorId: props.id, 
             helperId: ticket.helperId,
             resolved: ticket.resolved
         })
     }
 
     const updateTicket = (updatedTicket) => {
-        setEditing(false)
         
+        setEditing(false)
+        console.log(updatedTicket)
         props.editTicket(updatedTicket)
         props.getStudentTickets(props.id)
     }
     
     return (
         <div className="ticket-container">
-            {!props.studentTickets.length < 1 ? <h1>You have no tickets</h1>
-            :
-            props.studentTickets.map(ticket => (
+            
+            {props.studentTickets.map(ticket => (
                 <StudentTicket
+                key={ticket.id}
                 editHandler={editHandler}
                 ticket={ticket}/>
             ))
