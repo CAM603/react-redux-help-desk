@@ -20,9 +20,9 @@ const StudentTickets = (props) => {
     })
     const [currentTicket, setCurrentTicket] = useState(initialTicket)
 
-    // useEffect(() => {
-    //     props.getStudentTickets(props.id)
-    // }, [])
+    useEffect(() => {
+        props.getStudentTickets(props.id)
+    }, [])
     
     const editHandler = (ticket) => {
         setEditing(true)
@@ -49,7 +49,6 @@ const StudentTickets = (props) => {
     
     return (
         <div className="ticket-container">
-            
             {props.studentTickets.map(ticket => (
                 <StudentTicket
                 key={ticket.id}

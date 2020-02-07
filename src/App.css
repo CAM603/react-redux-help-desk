@@ -1,4 +1,4 @@
-span {
+.link {
   color: blue;
   text-decoration: underline;
 }
@@ -6,6 +6,9 @@ span {
 .card {
   width: 350px;
   margin-top: 10px;
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .modal-footer {
@@ -21,13 +24,14 @@ span {
 }
 
 .modalz {
-  background: lightblue;
+  
+  color: black;
   position: absolute;
   float: left;
   left: 50%;
-  top: 50%;
+  top: 30%;
   transform: translate(-50%, -50%);
-  padding: 20px;
+  padding: 20px ;
   background-clip: padding-box;
   border: 1px solid rgba(0,0,0,.1);
   box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
@@ -64,7 +68,35 @@ span {
 
 .welcome {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 60vh;
   align-items: center;
+}
+
+.role-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.role {
+  font-size: 6rem;
+  padding: 10px;
+}
+
+.count-container {
+  padding: 20px;
+}
+
+.count-container span {
+  color: red;
+}
+
+.logo {
+  /* font-family: 'Teko', sans-serif; */
+  font-family: 'Lato', sans-serif;
+  font-size: 5.5rem;
+  color: #BB1333;
+  font-weight: bold;
+  font-style: italic;
 }

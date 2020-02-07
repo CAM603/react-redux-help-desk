@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import HelperNav from './HelperNav';
 import AllHelperTickets from './AllHelperTickets';
 import HelperTickets from './HelperTickets';
+import HelperHome from './HelperHome';
 
 const HelperView = (props) => {
     const [tab, setTab] = useState('home')
@@ -10,11 +11,7 @@ const HelperView = (props) => {
 
     let display;
     if(tab === 'home') {
-        display = (
-            <div className="welcome">
-                <h1>Welcome back, {name}</h1>
-            </div>
-        )
+        display = <HelperHome/>
     }
     if(tab === 'all') {
         

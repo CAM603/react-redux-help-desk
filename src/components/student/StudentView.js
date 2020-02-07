@@ -6,20 +6,15 @@ import AddTicket from '../forms/AddTicket';
 import StudentNav from './StudentNav';
 import AllStudentTickets from './AllStudentTickets';
 import StudentTickets from './StudentTickets';
+import StudentHome from './StudentHome';
 
 const StudentView = (props) => {
     const [activeTab, setActiveTab] = useState('1');
     const [tab, setTab] = useState('home')
-    let name = localStorage.getItem('student')
-    name = name.charAt(0).toUpperCase() + name.slice(1)
     
     let display;
     if(tab === 'home') {
-        display = (
-            <div className="welcome">
-                <h1>Welcome back, {name}</h1>
-            </div>
-        )
+        display = <StudentHome/>
     }
     if(tab === 'all') {
         display = <AllStudentTickets />

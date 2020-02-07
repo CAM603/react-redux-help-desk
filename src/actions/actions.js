@@ -41,7 +41,9 @@ export const EDIT_TICKET_START = "EDIT_TICKET_START";
 export const EDIT_TICKET_SUCCESS = "EDIT_TICKET_SUCCESS";
 export const EDIT_TICKET_FAILURE = "EDIT_TICKET_FAILURE";
 
+export const ASSIGN_TICKET_START = "ASSIGN_TICKET_START";
 export const ASSIGN_TICKET_SUCCESS = "ASSIGN_TICKET_SUCCESS";
+export const ASSIGN_TICKET_FAILURE = "ASSIGN_TICKET_FAILURE";
 
 // STUDENTS
 export const loginStudent = credentials => dispatch => {
@@ -116,9 +118,20 @@ export const editTicket = (ticket) => dispatch => {
         dispatch({ type: EDIT_TICKET_FAILURE })
     })
 }
-
+//PUT REQUEST TO CHANGE HELPER ID
 export const assignTicket = ticket => dispatch => {
-    dispatch({ type: ASSIGN_TICKET_SUCCESS, payload: ticket })
+    dispatch({ type: ASSIGN_TICKET_START });
+    axiosWithAuth()
+    .put(`/requests/${ticket.id}`, ticket)
+    .then(res => {
+        console.log('edit', res)
+        dispatch({ type: ASSIGN_TICKET_SUCCESS, payload: ticket })
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({ type: ASSIGN_TICKET_FAILURE })
+    })
+    
 }
 
 // HELPERS

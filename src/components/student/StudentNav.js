@@ -16,7 +16,7 @@ const StudentNav = (props) => {
 
     return (
         <div>
-            <Nav tabs>
+            <Nav tabs style={{background: 'black', color: 'white'}}>
                 <NavItem>
                     <NavLink 
                     className={classnames({ active: props.activeTab === '1' })}
