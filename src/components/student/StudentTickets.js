@@ -20,9 +20,9 @@ const StudentTickets = (props) => {
     })
     const [currentTicket, setCurrentTicket] = useState(initialTicket)
 
-    // useEffect(() => {
-    //     props.getStudentTickets(props.id)
-    // }, [])
+    useEffect(() => {
+        props.getStudentTickets(props.id)
+    }, [])
     
     const editHandler = (ticket) => {
         setEditing(true)

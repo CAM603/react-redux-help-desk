@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import { getAllTickets } from '../../actions/actions'
+import { getAllTickets, getStudentTickets } from '../../actions/actions'
 
-const StudentHome = ({tickets, studentTickets, getAllTickets}) => {
+const StudentHome = ({tickets, studentTickets, getAllTickets, userID}) => {
     let name = localStorage.getItem('student')
     name = name.charAt(0).toUpperCase() + name.slice(1)
 
     useEffect(() => {
         getAllTickets()
+        getStudentTickets(userID)
     }, [])
+    
 
     return (
         <div className="welcome">
@@ -25,7 +27,8 @@ const StudentHome = ({tickets, studentTickets, getAllTickets}) => {
 const mapStateToProps = state => {
     return {
         tickets: state.tickets,
-        studentTickets: state.studentTickets
+        studentTickets: state.studentTickets,
+        userID: state.userID
     }
 }
-export default connect(mapStateToProps, {getAllTickets})(StudentHome);
+export default connect(mapStateToProps, {getAllTickets, getStudentTickets})(StudentHome);

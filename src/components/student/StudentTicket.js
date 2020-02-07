@@ -1,100 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 
-import { deleteTicket } from '../../actions/actions'
+import { deleteTicket } from '../../actions/actions';
+import { cardSwitch } from '../../utils/cardSwitch';
 
 import { Card, CardHeader, CardFooter, CardBody,
     CardTitle, CardText, Button } from 'reactstrap'
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-const StudentTicket = (props) => {
+const StudentTicket = ({ticket, deleteTicket, editHandler}) => {
+    const [helper, setHelper] = useState({})
+
+    useEffect(() => {
+        if(!ticket.helperId) {
+            setHelper({
+                name: 'Not assigned',
+                email: 'N/A'
+            })
+        }
+        if(ticket.helperId) {
+            axiosWithAuth()
+            .get(`helpers/${ticket.helperId}`)
+            .then(res => setHelper(res.data))
+            .catch(err => console.log(err))
+        }
+    }, [])
     
-    const deleteTicket = (ticketID) => {
-        props.deleteTicket(ticketID)
+    const handleDelete = (ticketID) => {
+        deleteTicket(ticketID)
     }
-    let topic;
-    let color;
-    let font;
-    switch (props.ticket.request_category) {
-        case 1:
-            topic = "JavaScript";
-            color = "#f0db4f";
-            break;
-        case 2:
-            topic = "CSS";
-            color = "#264de4";
-            font = "#FFFFFF"
-            break;
-        case 3:
-            topic = "Node";
-            color = "#3C873A"
-            break;
-        case 4:
-            topic = "React";
-            color = "#61DBFB"
-            break;
-        case 5:
-            topic = "Redux";
-            color = "#764abc"
-            break;
-        case 6:
-            topic = "{JSON}";
-            break;
-        case 7:
-            topic = "Python";
-            color = "#306998";
-            font = "#FFD43B"
-            break;
-        case 8:
-            topic = "Git";
-            color = "#F1502F"
-            font = "3E2C00"
-            break;
-        case 9:
-            topic = "Postman";
-            color = "#FFFFFF";
-            font = "#EF5B25"
-            break;
-        case 10:
-            topic = "Yarn";
-            color = "#1F88B6";
-            font = "#FFFFFF"
-            break;
-        case 11:
-            topic = "Library Installation";
-            color = "#CC0000";
-            font = "#FFFFFF"
-            break;
-        case 12:
-            topic = "App Deployment";
-            color = "black";
-            font = "#FFFFFF";
-    }
-    
+    // Proper card topic styles
+    let style = cardSwitch(ticket)
+    console.log('HERE',ticket)
     return (
         <Card>
-            <CardHeader tag="h3" style={{background: color, color: font}}>
-                {topic}
+            <CardHeader tag="h3" style={{background: style.color, color: style.font}}>
+                <img style={{height: '50px'}} src={style.picture}/>
+                <span> {style.topic}</span>
             </CardHeader>
             <CardBody>
                 <CardTitle>
-                    <h4>{props.ticket.request_title}</h4>
-                    <p>{props.ticket.request_details}</p>
+                    <h4>{ticket.request_title}</h4>
+                    <p>{ticket.request_details}</p>
                     <h4>Steps Taken</h4>
-                    <p>{props.ticket.request_stepstaken}</p>
+                    <p>{ticket.request_stepstaken}</p>
                 </CardTitle>
                 <CardText>
                 </CardText>
             </CardBody>
             <CardFooter>
+                <h5>Teacher</h5>
+                <p>{helper.name}</p>
+                <h5>Email</h5>
+                <p>{helper.email}</p>
                 <Button 
                 size="md" 
                 color="secondary" 
-                onClick={() => {props.editHandler(props.ticket)}}>edit</Button>
+                onClick={() => editHandler(ticket)}>edit</Button>
                     {' '}
                 <Button 
                 size="md" 
                 color="danger" 
-                onClick={() => deleteTicket(props.ticket.id)}>Delete</Button>
+                onClick={() => handleDelete(ticket.id)}>Delete</Button>
             </CardFooter>
         </Card>
     )
