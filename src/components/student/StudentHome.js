@@ -8,8 +8,10 @@ const StudentHome = ({tickets, studentTickets}) => {
     return (
         <div className="welcome">
             <h1>Welcome back, {name}</h1>
-            <h2>There are {tickets.length} tickets open</h2>
-            <h2>You have {studentTickets.length} tickets open</h2>
+            <div className="count-container">
+                <h3>There are <span>{tickets.length}</span> tickets open</h3>
+                <h3>You have <span>{studentTickets.length}</span> tickets open</h3>
+            </div>
         </div>
     )
 }

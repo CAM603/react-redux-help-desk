@@ -79,3 +79,11 @@
   font-size: 4.5rem;
   padding: 10px;
 }
+
+.count-container {
+  padding: 20px;
+}
+
+.count-container span {
+  color: red;
+}
