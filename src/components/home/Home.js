@@ -34,17 +34,12 @@ const Home = (props) => {
     return (
         <Container style={{textAlign: 'center'}}>
             <Jumbotron>
-                <h1>Hello, welcome to the best help app!</h1>
+                <h1>Hello, welcome to the <br/> <span className="logo">{'<HelpDesk/>'}</span></h1>
                 <hr/>
                 <h2>Are you a student or teacher?</h2>
             <div className='role-container'>
-                
-                    <span onClick={setStudent} className="role">🧑‍💻</span>
-                    {/* <Button color="primary" size="lg" onClick={setStudent}>student</Button> */}
-                
-                    <span onClick={setHelper} className="role">🧑‍🏫</span>
-                    {/* <Button color="success" size="lg" onClick={setHelper}>helper</Button> */}
-                
+                <span onClick={setStudent} className="role">🧑‍💻</span>
+                <span onClick={setHelper} className="role">🧑‍🏫</span>
             </div>
             </Jumbotron>
             <Row>

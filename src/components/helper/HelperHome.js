@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 
-const HelperHome = ({tickets, studentTickets}) => {
+const HelperHome = ({tickets, helperTickets}) => {
     let name = localStorage.getItem('helper')
     name = name.charAt(0).toUpperCase() + name.slice(1)
 
@@ -10,7 +10,7 @@ const HelperHome = ({tickets, studentTickets}) => {
             <h1>Welcome back, {name}</h1>
             <div className="count-container">
                 <h3>There are <span>{tickets.length}</span> tickets open</h3>
-                <h3>You have <span>{studentTickets.length}</span> tickets open</h3>
+                <h3>You have <span>{helperTickets.length}</span> tickets open</h3>
             </div>
         </div>
     )
@@ -18,7 +18,7 @@ const HelperHome = ({tickets, studentTickets}) => {
 const mapStateToProps = state => {
     return {
         tickets: state.tickets,
-        studentTickets: state.studentTickets
+        helperTickets: state.helperTickets
     }
 }
 export default connect(mapStateToProps, {})(HelperHome);

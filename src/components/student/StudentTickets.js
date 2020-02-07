@@ -49,7 +49,6 @@ const StudentTickets = (props) => {
     
     return (
         <div className="ticket-container">
-            
             {props.studentTickets.map(ticket => (
                 <StudentTicket
                 key={ticket.id}

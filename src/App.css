@@ -21,13 +21,14 @@
 }
 
 .modalz {
-  background: lightblue;
+  background: slategray;
+  color: white;
   position: absolute;
   float: left;
   left: 50%;
-  top: 50%;
+  top: 30%;
   transform: translate(-50%, -50%);
-  padding: 20px;
+  padding: 20px 40px;
   background-clip: padding-box;
   border: 1px solid rgba(0,0,0,.1);
   box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
@@ -86,4 +87,10 @@
 
 .count-container span {
   color: red;
+}
+
+.logo {
+  font-family: 'Teko', sans-serif;
+  font-size: 5.5rem;
+  color: rgb(17, 163, 17);
 }
