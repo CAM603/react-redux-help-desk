@@ -29,7 +29,9 @@ import {
     EDIT_TICKET_START,
     EDIT_TICKET_SUCCESS,
     EDIT_TICKET_FAILURE,
-    ASSIGN_TICKET_SUCCESS
+    ASSIGN_TICKET_START,
+    ASSIGN_TICKET_SUCCESS,
+    ASSIGN_TICKET_FAILURE,
 } from '../actions/actions';
 
 const initialState = {
@@ -242,11 +244,23 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 isEditing: false
             }
-        case ASSIGN_TICKET_SUCCESS:
-            let ticket = {...action.payload, helperId : state.userID }
+        case ASSIGN_TICKET_START:
             return {
                 ...state,
-                helperTickets: [...state.helperTickets, ticket]
+            }
+        case ASSIGN_TICKET_SUCCESS:
+            let ticket = {...action.payload, helperId : state.userID }
+            let assignedTicket = state.tickets.map(ticket => ticket.id === action.payload.id ? {...action.payload, helperId: state.userID} : ticket)
+            let stud = state.studentTickets.map(ticket => ticket.id === action.payload.id ? {...action.payload, helperId: state.userID} : ticket)
+            return {
+                ...state,
+                helperTickets: [...state.helperTickets, ticket],
+                studentTickets: stud,
+                tickets: assignedTicket
+            }
+        case ASSIGN_TICKET_FAILURE:
+            return {
+                ...state,
             }
         default:
             return state

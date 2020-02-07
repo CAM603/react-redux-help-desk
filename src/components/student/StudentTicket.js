@@ -50,7 +50,7 @@ const StudentTicket = ({ticket, deleteTicket, editHandler}) => {
             </CardBody>
             <CardFooter>
                 <h5>Teacher</h5>
-                <p>{helper.name}</p>
+                <p>{helper.username}</p>
                 <h5>Email</h5>
                 <p>{helper.email}</p>
                 <Button 
