@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Input, Button, Label } from 'reactstrap';
+import { Form, FormGroup, Input, Button, Label, Col } from 'reactstrap';
 import { connect } from 'react-redux'
+
+
 
 const EditTicket = (props) => {
     const [ticket, setTicket] = useState(props.currentTicket)
@@ -61,66 +63,131 @@ const EditTicket = (props) => {
     }
     
     return (
-        <div>
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                    <Label>Category</Label>
-                    <Input
-                    type="select"
-                    name="request_category"
-                    onChange={handleChange}>
-                        <option>JavaScript</option>
-                        <option>CSS</option>
-                        <option>Node</option>
-                        <option>React</option>
-                        <option>Redux</option>
-                        <option>JSON</option>
-                        <option>Python</option>
-                        <option>Git</option>
-                        <option>Postman</option>
-                        <option>Yarn</option>
-                        <option>Library Installation</option>
-                        <option>App Deployment</option>
-                    </Input>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Title</Label>
-                    <Input
-                    type="text"
-                    name="request_title"
-                    value={ticket.request_title}
-                    onChange={handleChange}
-                    placeholder="title"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Steps Taken</Label>
-                    <Input
-                    type="textarea"
-                    name="request_stepstaken"
-                    value={ticket.request_stepstaken}
-                    onChange={handleChange}
-                    placeholder="steps taken"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Details</Label>
-                    <Input
-                    type="textarea"
-                    name="request_details"
-                    value={ticket.request_details}
-                    onChange={handleChange}
-                    placeholder="details"
-                    />
-                </FormGroup>
-                <Button>Update</Button>
-            </Form>
+        <div className="add-ticket-container">
+            <div className="add-ticket">
+                <Form onSubmit={handleSubmit}>
+                    <FormGroup row>
+                        <Label sm={2}>Category</Label>
+                        <Col sm={10}>
+                            <Input
+                            type="select"
+                            name="request_category"
+                            onChange={handleChange}>
+                                <option>JavaScript</option>
+                                <option>CSS</option>
+                                <option>Node</option>
+                                <option>React</option>
+                                <option>Redux</option>
+                                <option>JSON</option>
+                                <option>Python</option>
+                                <option>Git</option>
+                                <option>Postman</option>
+                                <option>Yarn</option>
+                                <option>Library Installation</option>
+                                <option>App Deployment</option>
+                            </Input>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label sm={2}>Title</Label>
+                        <Col sm={10}>
+                            <Input
+                            type="text"
+                            name="request_title"
+                            value={ticket.request_title}
+                            onChange={handleChange}
+                            placeholder="title"
+                            />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label sm={2}>Steps Taken</Label>
+                        <Col sm={10}>
+                            <Input
+                            type="textarea"
+                            name="request_stepstaken"
+                            value={ticket.request_stepstaken}
+                            onChange={handleChange}
+                            placeholder="What steps have you taken so far?"
+                            />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Label sm={2}>Details</Label>
+                        <Col sm={10}>
+                            <Input
+                            type="textarea"
+                            name="request_details"
+                            value={ticket.request_details}
+                            onChange={handleChange}
+                            placeholder="Describe your issue"
+                            />
+                        </Col>
+                    </FormGroup>
+                    <Button size="md" color="primary">Add</Button>
+                </Form>
+            </div>
         </div>
-    )
-}
-const mapStateToProps = state => {
-    return {
-        id: state.userID
+        )
     }
-}
-export default connect(mapStateToProps)(EditTicket);
+    const mapStateToProps = state => {
+        return {
+            id: state.userID
+        }
+    }
+    export default connect(mapStateToProps)(EditTicket);
+    // <div>
+    //     <Form onSubmit={handleSubmit}>
+    //         <FormGroup>
+    //             <Label>Category</Label>
+    //             <Input
+    //             type="select"
+    //             name="request_category"
+    //             onChange={handleChange}>
+    //                 <option>JavaScript</option>
+    //                 <option>CSS</option>
+    //                 <option>Node</option>
+    //                 <option>React</option>
+    //                 <option>Redux</option>
+    //                 <option>JSON</option>
+    //                 <option>Python</option>
+    //                 <option>Git</option>
+    //                 <option>Postman</option>
+    //                 <option>Yarn</option>
+    //                 <option>Library Installation</option>
+    //                 <option>App Deployment</option>
+    //             </Input>
+    //         </FormGroup>
+    //         <FormGroup>
+    //             <Label>Title</Label>
+    //             <Input
+    //             type="text"
+    //             name="request_title"
+    //             value={ticket.request_title}
+    //             onChange={handleChange}
+    //             placeholder="title"
+    //             />
+    //         </FormGroup>
+    //         <FormGroup>
+    //             <Label>Steps Taken</Label>
+    //             <Input
+    //             type="textarea"
+    //             name="request_stepstaken"
+    //             value={ticket.request_stepstaken}
+    //             onChange={handleChange}
+    //             placeholder="steps taken"
+    //             />
+    //         </FormGroup>
+    //         <FormGroup>
+    //             <Label>Details</Label>
+    //             <Input
+    //             type="textarea"
+    //             name="request_details"
+    //             value={ticket.request_details}
+    //             onChange={handleChange}
+    //             placeholder="details"
+    //             />
+    //         </FormGroup>
+    //         <Button>Update</Button>
+    //     </Form>
+    // </div>

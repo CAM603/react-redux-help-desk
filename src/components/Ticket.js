@@ -3,11 +3,24 @@ import { connect } from 'react-redux'
 
 import { assignTicket, getHelperTickets }from '../actions/actions';
 
+
 import { Card, CardHeader, CardFooter, CardBody,
     CardTitle, CardText, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
+var redux = require('.././images/Redux.png');
+var react = require('.././images/React.png');
+var css = require('.././images/Css.png');
+var javascript = require('.././images/Javascript.png');
+var node = require('.././images/NodeJs.png');
+var python = require('.././images/python.png');
+var git = require('.././images/Git.png');
+var json = require('.././images/json.png');
+var yarn = require('.././images/Yarn.png');
+var heroku = require('.././images/Heroku.png');
+var npm = require('.././images/Npm.png');
 
-const Ticket = ({ticket, helper, assignTicket, helperTickets}) => {
+
+const Ticket = ({ticket, helper, assignTicket}) => {
     const [modal, setModal] = useState(false);
     
     const toggle = () => setModal(!modal);
@@ -15,40 +28,49 @@ const Ticket = ({ticket, helper, assignTicket, helperTickets}) => {
     let topic;
     let color;
     let font;
+    let picture;
     switch (ticket.request_category) {
         case 1:
             topic = "JavaScript";
-            color = "#f0db4f";
+            // font = "#f0db4f";
+            picture = javascript;
             break;
         case 2:
             topic = "CSS";
-            color = "#264de4";
-            font = "#FFFFFF"
+            font = "#264de4";
+            // color = "#FFFFFF";
+            picture = css;
             break;
         case 3:
             topic = "Node";
-            color = "#3C873A"
+            color = "#3C873A";
+            picture = node;
             break;
         case 4:
             topic = "React";
-            color = "#61DBFB"
+            font = "#61DBFB";
+            picture = react;
             break;
         case 5:
             topic = "Redux";
-            color = "#764abc"
+            font = "#764abc";
+            picture = redux;
             break;
         case 6:
             topic = "{JSON}";
+            picture = json;
             break;
         case 7:
             topic = "Python";
-            color = "#306998";
-            font = "#FFD43B"
+            font = "#306998";
+            // font = "#FFD43B";
+            picture = python;
             break;
         case 8:
             topic = "Git";
-            color = "#F1502F"
-            font = "3E2C00"
+            font = "#F1502F"
+            // color = "3E2C00";
+            picture = git;
             break;
         case 9:
             topic = "Postman";
@@ -57,18 +79,21 @@ const Ticket = ({ticket, helper, assignTicket, helperTickets}) => {
             break;
         case 10:
             topic = "Yarn";
-            color = "#1F88B6";
-            font = "#FFFFFF"
+            font = "#1F88B6";
+            // color = "#FFFFFF";
+            picture = yarn;
             break;
         case 11:
             topic = "Library Installation";
-            color = "#CC0000";
-            font = "#FFFFFF"
+            font = "#CC0000";
+            // color = "#FFFFFF";
+            picture = npm;
             break;
         case 12:
             topic = "App Deployment";
-            color = "black";
-            font = "#FFFFFF";
+            font = "black";
+            // color = "#FFFFFF";
+            picture = heroku;
     }
     const assign = (ticket) => {
         assignTicket(ticket)
@@ -78,7 +103,8 @@ const Ticket = ({ticket, helper, assignTicket, helperTickets}) => {
         <>
             <Card>
                 <CardHeader tag="h3" style={{background: color, color: font}}>
-                    {topic}
+                    <img style={{height: '50px'}} src={picture}/>
+                    <span> {topic}</span>
                 </CardHeader>
                 <CardBody>
                     <CardTitle>

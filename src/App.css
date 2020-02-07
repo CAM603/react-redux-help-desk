@@ -21,14 +21,14 @@
 }
 
 .modalz {
-  background: slategray;
-  color: white;
+  
+  color: black;
   position: absolute;
   float: left;
   left: 50%;
   top: 30%;
   transform: translate(-50%, -50%);
-  padding: 20px 40px;
+  padding: 20px ;
   background-clip: padding-box;
   border: 1px solid rgba(0,0,0,.1);
   box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);

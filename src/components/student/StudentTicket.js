@@ -77,23 +77,22 @@ const StudentTicket = (props) => {
             </CardHeader>
             <CardBody>
                 <CardTitle>
-                    Title: {props.ticket.request_title}
-                </CardTitle>
-                <CardText>
                     <h4>{props.ticket.request_title}</h4>
                     <p>{props.ticket.request_details}</p>
                     <h4>Steps Taken</h4>
                     <p>{props.ticket.request_stepstaken}</p>
+                </CardTitle>
+                <CardText>
                 </CardText>
             </CardBody>
             <CardFooter>
                 <Button 
-                size="sm" 
-                color="success" 
+                size="md" 
+                color="secondary" 
                 onClick={() => {props.editHandler(props.ticket)}}>edit</Button>
                     {' '}
                 <Button 
-                size="sm" 
+                size="md" 
                 color="danger" 
                 onClick={() => deleteTicket(props.ticket.id)}>Delete</Button>
             </CardFooter>
