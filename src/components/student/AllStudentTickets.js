@@ -31,12 +31,23 @@ const AllStudentTickets = (props) => {
     
     for(let key in topic) {
 
-    buttons.push(<button onClick={() => setCurrentTicket(topic[key])}>{key}</button>) 
-
+        buttons.push(
+            <button style={{
+                padding: ".25rem .5rem",
+                fontSize: ".875rem",
+                lineHeight: "1.5",
+                borderRadius: ".2rem",
+                color: "white",
+                background: "black",
+                width: '100px'
+            }} onClick={() => setCurrentTicket(topic[key])}>{key}</button>
+        ) 
     }
     return (
         <div>
-            {buttons}
+            <div style={{display: 'flex', justifyContent: 'space-around', padding: '10px'}}>
+                {buttons}
+            </div>
             <div className="ticket-container">
                 {currentTopic.map(ticket => (
                     <Ticket
