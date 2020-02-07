@@ -8,7 +8,8 @@ import { registerStudent, registerHelper } from '../../actions/actions';
 const Signup = (props) => {
     const [newUser, setNewUser] = useState({
         username: '',
-        password: ''
+        password: '',
+        email: ''
     })
 
     const handleChange = (event) => {
@@ -28,7 +29,7 @@ const Signup = (props) => {
             props.registerHelper(newUser)
         }
         
-        setNewUser({username: '', password: ''})
+        setNewUser({username: '', password: '', email: ''})
         props.setType('login')
     }
 
@@ -40,6 +41,8 @@ const Signup = (props) => {
                     type="text"
                     name="email"
                     placeholder="email"
+                    value={newUser.email}
+                    onChange={handleChange}
                     />
                 </FormGroup>
                 <FormGroup>

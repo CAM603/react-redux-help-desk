@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 
 import { deleteTicket } from '../../actions/actions'
 
 import { Card, CardHeader, CardFooter, CardBody,
     CardTitle, CardText, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 const HelperTicket = (props) => {
-    const [modal, setModal] = useState(false);
+    const [student, setStudent] = useState({})
     
-    const toggle = () => setModal(!modal);
-    
+    useEffect(() => {
+        axiosWithAuth()
+        .get(`students/${props.ticket.creatorId}`)
+        .then(res => setStudent(res.data))
+        .catch(err => console.log(err))
+    }, [])
     const deleteTicket = (ticketID) => {
         props.deleteTicket(ticketID)
     }
@@ -72,7 +77,7 @@ const HelperTicket = (props) => {
             color = "black";
             font = "#FFFFFF";
     }
-    
+    console.log(student)
     return (
         <>
         <Card>
@@ -88,10 +93,14 @@ const HelperTicket = (props) => {
                 </CardTitle>
             </CardBody>
             <CardFooter>
+                <h5>Student</h5>
+                <p>{student.username}</p>
+                <h5>Email</h5>
+                <p>{student.email}</p>
                 <Button
                 size="sm"
                 color="danger"
-                onClick={() => deleteTicket(props.ticket.id)}>Delete</Button>
+                onClick={() => deleteTicket(props.ticket.id)}>Mark Solved</Button>
             </CardFooter>
         </Card>
     </>

@@ -7,7 +7,7 @@ import { Card, CardHeader, CardFooter, CardBody,
     CardTitle, CardText, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 
-const Ticket = ({ticket, helper, assignTicket}) => {
+const Ticket = ({ticket, helper, assignTicket, helperTickets}) => {
     const [modal, setModal] = useState(false);
     
     const toggle = () => setModal(!modal);
@@ -96,8 +96,9 @@ const Ticket = ({ticket, helper, assignTicket}) => {
                     {' '}
                     {helper ? 
                     <Button
+                    outline color="primary"
                     onClick={() => assign(ticket)}
-                    size="sm">Assign</Button>
+                    size="sm">Help Student</Button>
                     : null}
                 </CardFooter>
             </Card>
@@ -122,7 +123,8 @@ const Ticket = ({ticket, helper, assignTicket}) => {
 const mapStateToProps = state => {
     return {
         helper: state.helper,
-        id: state.userID
+        id: state.userID,
+        helperTickets: state.helperTickets
     }
 }
 export default connect(mapStateToProps, {assignTicket, getHelperTickets})(Ticket);
