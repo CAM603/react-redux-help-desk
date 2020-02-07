@@ -13,8 +13,8 @@ const Form = (props) => {
             {type === 'login' 
             ? 
             <div className="login-footer">
-                <p>Not signed up?{' '}
-                    <span className="link" onClick={() => setType('signup')}>Sign Up</span>
+                <p>Not registered?{' '}
+                    <span className="link" onClick={() => setType('signup')}>Register</span>
                 </p> 
             </div>
             : 

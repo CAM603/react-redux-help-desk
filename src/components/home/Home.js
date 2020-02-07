@@ -24,7 +24,7 @@ const Home = (props) => {
     } else if (role === 'helper') {
 
         display = <Form {...props} role="helper"/>
-        greeting = <h2>Welcome Helper!</h2>
+        greeting = <h2>Welcome Teacher!</h2>
         
     } else {
         display = null;
@@ -34,7 +34,7 @@ const Home = (props) => {
     return (
         <Container style={{textAlign: 'center'}}>
             <Jumbotron>
-                <h1>Hello, welcome to the <br/> <span className="logo">{'<HelpDesk/>'}</span></h1>
+                <h1>Hello, welcome to <br/> <span className="logo">{'<HelpDesk/>'}</span></h1>
                 <hr/>
                 <h2>Are you a student or teacher?</h2>
             <div className='role-container'>
