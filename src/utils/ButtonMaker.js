@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import { Button } from 'reactstrap';
+
 const ButtonMaker = (props) => {
     const [topic, setTopic] = useState({
         all: props.tickets,
@@ -24,22 +26,16 @@ const ButtonMaker = (props) => {
     for(let key in topic) {
 
         buttons.push(
-            <button style={{
-                padding: ".25rem .5rem",
-                fontSize: ".875rem",
-                lineHeight: "1.5",
-                borderRadius: ".2rem",
-                color: "white",
-                background: "black",
-                width: '100px'
-            }} onClick={() => props.setCurrentTicket(topic[key])}>{key}</button>
+            <Button
+            size='sm'
+            color="primary"
+            onClick={() => props.setCurrentTicket(topic[key])}>{key}</Button>
         ) 
     }
 
     return (
         <>
             {buttons}
-            {/* {buttons.map(button => button)} */}
         </>
     )
 }

@@ -8,11 +8,13 @@ import ButtonMaker from '../../utils/ButtonMaker';
 const AllStudentTickets = (props) => {
     const [currentTopic, setCurrentTicket] = useState(props.tickets)
 
+    const chronicTickets = currentTopic.sort((a,b) => a.request_date > b.request_date ? b : a)
+
     useEffect(() => {
         props.getAllTickets();
         
     }, [])
-
+    
     return (
         <div>
             <div style={{display: 'flex', justifyContent: 'space-around', padding: '10px'}}>
@@ -29,7 +31,6 @@ const AllStudentTickets = (props) => {
         </div>
     )
 }
-
 const mapStateToProps = (state) => {
     return {
         tickets: state.tickets
