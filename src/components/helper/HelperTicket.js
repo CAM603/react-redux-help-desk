@@ -5,7 +5,7 @@ import { deleteTicket } from '../../actions/actions';
 
 
 import { Card, CardHeader, CardFooter, CardBody,
-    CardTitle, Button } from 'reactstrap'
+    CardTitle, Button, CardText } from 'reactstrap'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { cardSwitch } from '../../utils/cardSwitch';
 
@@ -39,12 +39,14 @@ const HelperTicket = ({ticket, deleteTicket}) => {
                     <h4>Steps Taken</h4>
                     <p>{ticket.request_stepstaken}</p>
                 </CardTitle>
+                <CardText>
+                    <h5>Student</h5>
+                    <p>{student.username}</p>
+                    <h5>Email</h5>
+                    <p>{student.email}</p>
+                </CardText>
             </CardBody>
             <CardFooter>
-                <h5>Student</h5>
-                <p>{student.username}</p>
-                <h5>Email</h5>
-                <p>{student.email}</p>
                 <Button
                 size="sm"
                 color="danger"
