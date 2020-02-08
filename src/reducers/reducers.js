@@ -234,10 +234,12 @@ export const rootReducer = (state = initialState, action) => {
             }
         case EDIT_TICKET_SUCCESS:
             let updatedTickets = state.tickets.map(ticket => ticket.id === action.payload.id ? action.payload : ticket)
+            let updatedStudent = state.studentTickets.map(ticket => ticket.id === action.payload.id ? action.payload : ticket)
             return {
                 ...state,
                 isEditing: false,
-                tickets: updatedTickets
+                tickets: updatedTickets,
+                studentTickets: updatedStudent
             }
         case EDIT_TICKET_FAILURE:
             return {

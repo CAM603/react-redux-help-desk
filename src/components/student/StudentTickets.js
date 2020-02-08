@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getStudentTickets, editTicket } from '../../actions/actions'
+import { getStudentTickets, editTicket, getAllTickets } from '../../actions/actions'
 import StudentTicket from './StudentTicket';
 import EditTicket from '../forms/EditTicket';
 import '../.././App.css'
@@ -45,6 +45,7 @@ const StudentTickets = (props) => {
         console.log(updatedTicket)
         props.editTicket(updatedTicket)
         props.getStudentTickets(props.id)
+        props.getAllTickets()
     }
     
     return (
@@ -78,4 +79,4 @@ const mapStateToProps = (state) => {
         id: state.userID
     }
 }
-export default connect(mapStateToProps, {getStudentTickets, editTicket})(StudentTickets);
+export default connect(mapStateToProps, {getAllTickets, getStudentTickets, editTicket})(StudentTickets);

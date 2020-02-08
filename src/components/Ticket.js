@@ -46,6 +46,7 @@ const Ticket = ({ticket, helper, assignTicket}) => {
                     onClick={() => assign(ticket)}
                     size="sm">Help Student</Button>
                     : null}
+                    <span> {ticket.request_date}</span>
                 </CardFooter>
             </Card>
             <Modal isOpen={modal} toggle={toggle}>

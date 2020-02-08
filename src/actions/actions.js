@@ -110,7 +110,7 @@ export const editTicket = (ticket) => dispatch => {
     axiosWithAuth()
     .put(`/requests/${ticket.id}`, ticket)
     .then(res => {
-        console.log('edit', res)
+        console.log('edit', res, ticket)
         dispatch({ type: EDIT_TICKET_SUCCESS, payload: ticket })
     })
     .catch(err => {
