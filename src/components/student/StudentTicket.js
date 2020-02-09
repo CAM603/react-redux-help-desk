@@ -31,7 +31,7 @@ const StudentTicket = ({ticket, deleteTicket, editHandler}) => {
     }
     // Proper card topic styles
     let style = cardSwitch(ticket)
-    console.log('HERE',ticket)
+    
     return (
         <Card>
             <CardHeader tag="h3" style={{background: style.color, color: style.font}}>
